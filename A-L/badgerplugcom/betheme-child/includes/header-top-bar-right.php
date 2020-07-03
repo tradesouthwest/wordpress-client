@@ -88,22 +88,29 @@ if ($has_cart || $header_search || $action_link || $wpml_icon) {
 				} else {
 					$action_class = false;
 				}
-
-if( function_exists( 'betheme_child_check_for_display_button' ) ) : 
-	$pageis = false;
-	$pageis = betheme_child_check_for_display_button();
-	if($pageis){$action_show = 'block';}else{$action_show='none';}
-	else: $action_show = '';
-endif;
-
-				echo '<div style="display: ' . esc_attr($action_show) . ';">';
-				echo '<a href="'. esc_url($action_link) .'" class="action_button'. esc_attr($action_class) .'" '. wp_kses_data($action_target) .'>'. wp_kses(mfn_opts_get('header-action-title'), mfn_allowed_html('button')) .'</a>';
-				echo '</div>';
+				// start @author Larry @Codeable
 				if( function_exists('betheme_child_request_aquote_echo') ) { 
                     do_action('betheme_child_request_aquote_hook');
 				}
+				$btnclss = ( is_singular('single-product') || is_singular() 
+							|| is_product() ) ? 'none' : 'block';
+				$btndlss = array( 
+							'about',
+                            'resources',
+                            'services',
+                            'industries',
+                            'contact',
+                            'component-recycling-program',
+                     );
+					 if( in_array( is_page($btndlss), $btndlss ) || is_front_page() ) $btnclss = "block";
+				// !end @author
+
+				echo '<div id="QButton" style="display:' . esc_attr( $btnclss ) . '">'; //@author Larry
+				echo '<a href="'. esc_url($action_link) .'" class="action_button'. esc_attr($action_class) .'" '. wp_kses_data($action_target) .'>'. wp_kses(mfn_opts_get('header-action-title'), mfn_allowed_html('button')) .'</a>';
+				echo '</div>'; // also 
+				
             }
 
 		echo '</div>';
 	echo '</div>';
-}
+} 
