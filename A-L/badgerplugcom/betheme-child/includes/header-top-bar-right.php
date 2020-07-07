@@ -88,26 +88,59 @@ if ($has_cart || $header_search || $action_link || $wpml_icon) {
 				} else {
 					$action_class = false;
 				}
-				// start @author Larry @Codeable
-				if( function_exists('betheme_child_request_aquote_echo') ) { 
-                    do_action('betheme_child_request_aquote_hook');
-				}
-				$btnclss = ( is_singular('single-product') || is_singular() 
-							|| is_product() ) ? 'none' : 'block';
-				$btndlss = array( 
-							'about',
-                            'resources',
-                            'services',
-                            'industries',
-                            'contact',
-                            'component-recycling-program',
-                     );
-					 if( in_array( is_page($btndlss), $btndlss ) || is_front_page() ) $btnclss = "block";
-				// !end @author
+	// Start @codeable Larry
+	if( function_exists( 'betheme_child_request_aquote_echo' ) ) { 
+		if ( ( is_single() && 'post' == get_post_type() ) || is_home() || is_front_page() 
+			|| is_page( array( 
+				'products', 
+				'roll-protection-products',
+				'steel-core-plugs',
+				'about',
+				'resources',
+				'services',
+				'industries',
+				'contact',
+				'component-recycling-program',
+				) ) ) 
+    	{ 
+        echo '<a href="'. esc_url($action_link) .'" class="action_button'. esc_attr($action_class) .'" '. wp_kses_data($action_target) .'>'. wp_kses(mfn_opts_get('header-action-title'), mfn_allowed_html('button')) .'</a>';
+    	} 
+    
+        // Get quotes count in (cart)
+        elseif( is_singular() || is_singular('single-product') ) 
+        { 
+        $url_icon = 'https://staging-badgerplugcom.kinsta.cloud/wp-content/uploads/2020/07/cart-icon_256x256.png';
+        $quote_cnt = '';
+        $quote_cnt = do_shortcode('[yith_ywraq_number_items class="qcnt" item_name="Item" item_plural_name="Items" show_url="no"]');
+        
+        // Clean and echo
+        ob_start();
+    
+        echo '<a class="action_button yith-items-button" href="' . home_url( '/' ) . 'request-quote/" title="quotes">
+    <span id="yithQuoteItem"><i class="iqcart"><img src="' . esc_url($url_icon) . '" height="14" width="16" alt=""/></i> 
+    <span id="quoteItemQnty"> &nbsp;' . $quote_cnt . ' </span> 
+    <span class="lnkspc"> &nbsp;' . __( " in Quote" ) . '</span></span></a>';
+    
+    $qbutton = ob_get_clean();
+        
+        echo $qbutton;
 
-				echo '<div id="QButton" style="display:' . esc_attr( $btnclss ) . '">'; //@author Larry
-				echo '<a href="'. esc_url($action_link) .'" class="action_button'. esc_attr($action_class) .'" '. wp_kses_data($action_target) .'>'. wp_kses(mfn_opts_get('header-action-title'), mfn_allowed_html('button')) .'</a>';
-				echo '</div>'; // also 
+        }
+        else
+        {
+    echo '<a href="'. esc_url($action_link) .'" class="action_button'. esc_attr($action_class) .'" '. wp_kses_data($action_target) .'>'. wp_kses(mfn_opts_get('header-action-title'), mfn_allowed_html('button')) .'</a>';
+    }
+	}  
+		else { 
+		// !ends @codeable Larry
+	echo '<a href="'. esc_url($action_link) .'" class="action_button'. esc_attr($action_class) .'" '. wp_kses_data($action_target) .'>'. wp_kses(mfn_opts_get('header-action-title'), mfn_allowed_html('button')) .'</a>';
+		// starts @codeable Larry
+		} 
+		// !ends @codeable Larry
+
+				// echo '<div id="QButton" style="display:' . esc_attr( $btnclss ) . '">'; //@author Larry
+				// echo '<a href="'. esc_url($action_link) .'" class="action_button'. esc_attr($action_class) .'" '. wp_kses_data($action_target) .'>'. wp_kses(mfn_opts_get('header-action-title'), mfn_allowed_html('button')) .'</a>';
+				// echo '</div>'; // also 
 				
             }
 
