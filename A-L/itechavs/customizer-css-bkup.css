@@ -1,0 +1,129 @@
+.page-id-1848 #primary .col-md-2 {
+  display: flex;
+	align-items: center;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	padding: 5px;
+}
+
+.page-id-1848 #primary .row {
+	border-top: 1px solid #ccc;
+}
+
+.page-id-1848 #primary .col-md-2 img {
+	margin: 0 auto;
+}
+
+.footer-bottom .dropdown-menu {
+	display: none !important;
+}
+
+.footer-bottom .dropdown-toggle::after {
+	display: none !important;
+}
+
+.page-id-2175 #primary a {
+	color: #184C81;
+	font-weight: bold;
+}
+
+.page-id-2175 #primary .btn {
+	color: #fff;
+}
+
+.dropdown-menu {
+	background: rgba(255, 255, 255, 0.8)
+}
+ul.products {
+	margin-top: 2.5em;
+}
+ul.products li.product a img{
+	margin: 0 auto;
+}
+
+ul.products li.product .woocommerce-loop-product__title{
+	padding-top: 15px;
+}
+/*added by Larry @codeable*/
+#secondary.widget-area{
+	margin-top: 9.444em;
+	padding-left: 2em;
+}
+
+#secondary.widget-area ul{
+	list-style:none;
+}
+
+#secondary.widget-area h2.widget-title{
+	margin-left: .67em;
+	font-size: 1.444em;
+	color: #222;
+}
+
+.woocommerce-breadcrumb{
+	display:none;
+}
+
+.entry-title-product-heading{
+	font-size: 1.82em;
+}
+
+ul.products li.product .button.product_type_simple {
+  background: #f4f4f4;
+  border-radius: 5px;
+  padding: 6px 8px;
+  text-align: center;
+  margin: 1em 2em;
+}
+
+.archive.post-type-archive-product .site-content {
+  width: 92%;
+  margin: 1em auto;
+}
+
+.padded-sides {
+  padding-left: 3vw;
+  padding-right: 3vw;
+}
+
+.single-product div.product .woocommerce-product-gallery{
+	top: 4em;
+	box-shadow:0 0 1px 1px #ddd;
+	margin-bottom:4.222em;
+}
+
+.single-product div.product .woocommerce-product-gallery .woocommerce-product-gallery__image a img{
+	margin: 0 auto;
+	text-align:center;
+}
+
+.product_title.entry-title{
+	color: #404040;
+	padding-top: 28px;
+}
+
+#tab-title-description{
+	visibility:hidden;
+}
+
+@media screen and (min-width: 1240px) {
+	.products-hero-top{
+		height: 766px;
+		background-size: cover;
+		background-position: center bottom;
+	}
+  .products-hero-top h2.vc_custom_heading,
+.products-hero-top div.wpb_wrapper h3 {
+  color: #fdfdfd;
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .page-template-archive-products.page-template #primary.container {
+    max-width: 1800px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+	
+}
