@@ -212,26 +212,34 @@ else :
  */
 $first_carton_cnt_label     = wc_attribute_label('pa_carton-count');  
 $first_cartons_pallet_label = wc_attribute_label('pa_cartons-per-pallet');  
-$first_carton_value = betheme_child_get_product_terms_carton( 'carton-count', $product_id );
-$first_pallet_value = betheme_child_get_product_terms_carton( 'cartons-per-pallet', $product_id );
-$first_carton_value = ( empty( $first_carton_value )) ? '&nbsp;' : $first_carton_value; 
-if ( $first_pallet_value !='' ) { 
-    echo '<p>' . esc_html($first_carton_cnt_label) . ': </span><span>' . esc_html($first_carton_value) . '</span>
+$first_carton_value     = betheme_child_get_product_terms_carton( 'carton-count', $product_id );
+$first_pallet_value     = betheme_child_get_product_terms_carton( 'cartons-per-pallet', $product_id );
+$first_carton_value     = ( empty( $first_carton_value )) ? '&nbsp;' : $first_carton_value; 
+$product_instance       = wc_get_product($product_id);
+$item_description_value = $product_instance->get_description();
+ 
+if ( $first_carton_value > 0 ) { 
+    echo '<div class="low-lineheight"><p><span>' . esc_html($first_carton_cnt_label) . ': </span><span>' . absint($first_carton_value) . '</span>
 	<span class="delim"> | </span>
 	<span>' . esc_html($first_cartons_pallet_label) . ': </span><span>' . esc_html($first_pallet_value) . '</span></p>';
-
+	echo '<p><span class="strong">Description: </span><span> ' . esc_html($item_description_value) . '</span></p>';
 	echo '
 	<input type="hidden" name="carton_cnt_label_'. esc_attr($product_id) .'" 
-		value="' . esc_attr($first_carton_cnt_label) . '" id="carton_cnt_label_'. esc_attr($product_id) .'">
+		value="' . intval($first_carton_cnt_label) . '" id="first_carton_cnt_label_'. esc_attr($product_id) .'">
 	<input type="hidden" name="cartons_pallet_label_'. esc_attr($product_id) .'" 
-		value="' . esc_attr($first_cartons_pallet_label) . '" id="cartons_pallet_label_'. esc_attr($product_id) .'">
+		value="' . intval($first_pallet_label) . '" id="first_cartons_pallet_label_'. esc_attr($product_id) .'">
 	<input type="hidden" name="carton_cnt_value_'. esc_attr($product_id) .'" 
-		value="' . esc_attr($first_carton_value) . '" id="carton_cnt_value_'. esc_attr($product_id) .'">
+		value="' . intval($first_carton_val) . '" id="first_carton_cnt_value_'. esc_attr($product_id) .'">
 	<input type="hidden" name="cartons_pallet_value_'. esc_attr($product_id) .'" 
-		value="' . esc_attr($first_pallet_value) . '" id="cartons_pallet_value_'. esc_attr($product_id) .'">';
-}else{
-    print("");
-}
+		value="' . intval($first_pallet_val) . '" id="first_cartons_pallet_value_'. esc_attr($product_id) .'">
+	<input type="hidden" name="cartons_pallet_value_'. esc_attr($product_id) .'" 
+		value="' . intval($$item_description_value) . '" id="item_description_value_'. esc_attr($product_id) .'">
+		</div>';
+	}else{
+    echo '<div class="low-lineheight"><p><span class="strong">Description: </span><span> ' . esc_html($item_description_value) . '</span></p>
+	<input type="hidden" name="item_description_value_'. esc_attr($product_id) .'" 
+		value="' . intval($$item_description_value) . '" id="item_description_value_'. esc_attr($product_id) .'"></div>';
+} 
 ?> 
 
 							<?php
