@@ -10,7 +10,7 @@ License URI: https://themeforest.net/licenses/standard
 Text Domain: betheme
 Version: 21.7.40
 */
-
+/*
 .wc-bookings-booking-form{
   position:absolute;
   top: 155px;
@@ -38,7 +38,7 @@ Version: 21.7.40
 }
 .woocommerce .product div.entry-summary .cart .button{
   margin-top: 1em;
-}
+} */
 .woocommerce .shop_table .product-name .variation > dt.variation-UpholsteryCleaning,
 .woocommerce .shop_table .product-name .variation > dd.variation-UpholsteryCleaning,
 .woocommerce .shop_table .product-name .variation > dt.variation-Selectupholstery,
