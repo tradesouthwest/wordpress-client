@@ -10,69 +10,87 @@ License URI: https://themeforest.net/licenses/standard
 Text Domain: betheme
 Version: 21.7.40
 */
-/*
-.wc-bookings-booking-form{
-  position:absolute;
-  top: 155px;
-  min-height: 480px;
-  margin-bottom: 4em;
+.woocommerce-cart-form__cart-item .product-name .variation > dt{
+  font-weight: bold;
+  color: #333;
 }
-.wc-bookings-booking-form:before,
-.wc-bookings-booking-form:after{
-  content: "";
-  display: table;
-  width: 100%;
-  height: .05%;
-  position: relative;
+.woocommerce-cart-form__cart-item .product-name .variation > dd{
+  color:#777777;
+  font-size: normal;
 }
-.wc-bookings-booking-form:after{
-  clear: both;
-}
-.single-top-divider{
-  display:block;
-  width:100%;
-  position: relative; 
-  background: transparent; 
-  height: 470px;
-  margin: 1px 0;  
-}
-.woocommerce .product div.entry-summary .cart .button{
-  margin-top: 1em;
-} */
 .woocommerce .shop_table .product-name .variation > dt.variation-UpholsteryCleaning,
-.woocommerce .shop_table .product-name .variation > dd.variation-UpholsteryCleaning,
+.woocommerce .shop_table .product-name .variation > dt.variation-AreaRugCleaning,
+.woocommerce .shop_table .product-name .variation > dt.variation-Selecthardsurfaces,
+.woocommerce .shop_table .product-name .variation > dt.variation-MattressCleaning,
+.woocommerce-cart-form__cart-item .product-name .variation > dt.variation-Selecthardsurfaces,
+.woocommerce-cart-form__cart-item .product-name .variation > dt.variation-AreaRugCleaning,
+.woocommerce-cart-form__cart-item .product-name .variation > dt.variation-UpholsteryCleaning,
+.woocommerce-cart-form__cart-item .product-name .variation > dt.variation-MattressCleaning{
+  text-decoration: underline;
+}
+.woocommerce .shop_table .product-name .variation > dd,
+.woocommerce-cart-form__cart-item .product-name .variation > dd{
+ 
+  color: #000;
+ 
+}
+/*.woocommerce-cart-form__cart-item .product-name > dl.variation > dt[class^="variation-"],
+.woocommerce-cart-form__cart-item .product-name > dl.variation > dd[class^="variation-"]::not(span),*/
+
 .woocommerce .shop_table .product-name .variation > dt.variation-Selectupholstery,
-.woocommerce .shop_table .product-name .variation > dd.variation-Selectupholstery {
-  visibility: hidden;
-  max-height:2em;
-  overflow-y: hidden;
+.woocommerce .shop_table .product-name .variation > dt.variation-Selecttypeofrug,
+.woocommerce .shop_table .product-name .variation > dt.variation-Selecthardsurfaces,
+.woocommerce .shop_table .product-name .variation > dd.variation-Selecthardsurfaces .wcpa_cart_type_checkbox-group span,
+.woocommerce .shop_table .product-name .variation > dd.variation-UpholsteryCleaning .wcpa_cart_type_checkbox-group span,
+.woocommerce .shop_table .product-name .variation > dd.variation-MattressCleaning .wcpa_cart_type_checkbox-group span,
+.woocommerce .shop_table .product-name .variation > dd.variation-AreaRugCleaning .wcpa_cart_type_checkbox-group span,
+.woocommerce .shop_table .product-name .variation > dd.variation-wcpa_empty_label .wcpa_cart_type_checkbox-group span,
+
+.woocommerce-cart-form__cart-item .product-name .variation > dt.variation-Selectupholstery,
+.woocommerce-cart-form__cart-item .product-name .variation > dt.variation-Selecttypeofrug,
+.woocommerce-cart-form__cart-item .product-name .variation > dt.variation-Selecthardsurfaces,
+.woocommerce-cart-form__cart-item .product-name .variation > dd.variation-Selecthardsurfaces .wcpa_cart_type_checkbox-group span,
+.woocommerce-cart-form__cart-item .product-name .variation > dd.variation-UpholsteryCleaning .wcpa_cart_type_checkbox-group span,
+.woocommerce-cart-form__cart-item .product-name .variation > dd.variation-MattressCleaning .wcpa_cart_type_checkbox-group span,
+.woocommerce-cart-form__cart-item .product-name .variation > dd.variation-AreaRugCleaning .wcpa_cart_type_checkbox-group span,
+.woocommerce-cart-form__cart-item .product-name .variation > dd.variation-wcpa_empty_label .wcpa_cart_type_checkbox-group span
+{
+  display: none;
 }
 .woocommerce .shop_table .product-name .variation > dt.variation-BookingDate,
 .woocommerce .shop_table .product-name .variation > dt.variation-BookingTime,
 .woocommerce .shop_table .product-name .variation > dd.variation-BookingDate,
-.woocommerce .shop_table .product-name .variation > dd.variation-BookingTime
+.woocommerce .shop_table .product-name .variation > dd.variation-BookingTime,
+.woocommerce-cart-form__cart-item .product-name .variation > dt.variation-BookingDate,
+.woocommerce-cart-form__cart-item .product-name .variation > dt.variation-BookingTime,
+.woocommerce-cart-form__cart-item .product-name .variation > dd.variation-BookingDate,
+.woocommerce-cart-form__cart-item .product-name .variation > dd.variation-BookingTime
 {
-  visibility: visible;
-  max-height: 100%;
-  overflow: initial;
+  color: #000;
+  background: #ffe38b;
 }
+
+.woocommerce-cart-form__cart-item .product-remove a.remove{
+  margin: 27px 25px 0 5px !important;
+  background-color: #d20;
+}
+
 .checkout.woocommerce-checkout td.product-name dl.variation{
   visibility: visible;
   max-height: 100%;
   overflow: initial;
-  font-size: small;
 }
-.single .wcpa_form_outer{
-padding-top:15vh;
+
+@media ( min-width: 668px ){ 
+  .woocommerce .product div.entry-summary h1.product_title{
+    position:absolute !important;
+    left: 10px;
+    line-height: 24px;
+  }
+  .woocommerce .product .product_wrapper .product_image_wrapper{
+    top: 3.2em;
+  }
+  .woocommerce .product div.entry-summary h1.product_title::after{
+    border-width: 0 0 0;
+  } 
 }
-/*
-.wcpa_form_outer, .wcpa_price_summary{position: absolute;}
-.wcpa_form_outer{top: 640px;display:block; height: 100%;} 
-.wcpa_price_summary{top:680px; height: 100%;}
-.wcpa_form_outer:after, 
-.wcpa_price_summary:after{
-  content: " "; clear:left; display:table; width: 100%; background: #ddd; height: 1px;}
-.wcpa_price_summary:after{ width:100%; height: 300px;}
-#Footer .widgets_wrapper:before{content: ""; clear: both; background: #eee; width: 100%; display: block; height: 1px;}
-#Footer .widgets_wrapper{min-height: 280px;}
-*/
