@@ -233,7 +233,9 @@ max-height: 1px; border: 0; visibility: hidden; overflow: hidden; color:transpar
 .woocommerce-cart-form__cart-item .product-name .variation dd.variation-HardSurfaceCleaning span,
 .woocommerce-cart-form__cart-item .product-name .variation [class*="-Select"],
 .product-name .variation dd[class^="variation"] .wcpa_cart_val span[data-content^="Tiled"],
-.product-name .variation dd[class^="variation"] .wcpa_cart_val span[data-content^="See "] {
+.product-name .variation dd[class^="variation"] .wcpa_cart_val span[data-content^="See "],
+.woocommerce .shop_table .product-name .variation dd[class^="variation-HALLWAY"] .wcpa_cart_val.wcpa_cart_type_checkbox-group span,
+table.shop_table_mobile-first.cart.woocommerce-cart-form__contents tbody tr.border-bttm.woocommerce-cart-form__cart-item.cart_item.wcpa_cart_has_fields td.product-name.mobile-extend dl.variation dd.variation-HALLWAYSampSTAIRS div.wcpa_cart_val.wcpa_cart_type_checkbox-group span{
   display: none !important;
   border: 0;
 }
