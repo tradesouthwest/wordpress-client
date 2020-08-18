@@ -35,11 +35,16 @@ function readlimit_rcp_member_can_access( $can_access, $member_id, $post_id, $me
 }
  
 add_filter( 'rcp_member_can_access', 'readlimit_rcp_member_can_access', 10, 4 );
- 
-function user_last_login( $user_login, $user ) {
+
+/**
+ * Add or update meta data to releft last login time
+ */
+function readlimit_access_user_last_login( $user_login, $user ) {
     update_user_meta( $user->ID, 'last_login', time() );
+	readlimit_access_check_timelimit();
 }
-add_action( 'wp_login', 'user_last_login', 10, 2 );
+add_action( 'wp_login', 'readlimit_access_user_last_login', 10, 2 );
+
 /**
  * Check if user logged in and is subscriber
  * @param string $user WP core get_user_by string $field, int|string $value
@@ -48,6 +53,18 @@ add_action( 'wp_login', 'user_last_login', 10, 2 );
  */
 function readlimit_access_check_subscriber_status()
 { 
+    ?>
+<table class="widefat fixed" cellspacing="0">
+    <thead>
+    <tr>
+        <th>display name</th>
+        <th>date user registered</th>
+        <th>date last logged in</th>
+    </tr>
+    </thead>
+    <tbody>
+	    
+    <?php 
     //$user_id = get_current_user_id(); 
     global $wpdb;
     $args = array(
@@ -58,20 +75,7 @@ function readlimit_access_check_subscriber_status()
 
     // The Query
     $user_query = new WP_User_Query( $args );
-
-    
     // User Loop
-    ?>
-    <table class="widefat fixed" cellspacing="0">
-    <thead>
-    <tr>
-        <th>display name</th>
-        <th>date user registered</th>
-        <th>date last logged in</th><th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php
     if ( ! empty( $user_query->get_results() ) ) { 
     $last_login = ( $user->last_login == '' ) ? 'never logged in' 
                         : date( 'Y-m-d H:i:s', $user->last_login );
@@ -91,14 +95,14 @@ function readlimit_access_check_subscriber_status()
         echo '<tr><td colspan="3">No users found.</td></tr>';
     
     } ?> 
-    
+    <tr><td colspan="3"></td></tr>
     </tbody></table>
     
     <?php 
     
         $user_query = null;
 }
-//add_action('wp_login', 'readlimit_access_check_subscriber_status', 0, 2);
+
 /**
  * Start session timer for reading
  * @param string $readlimit_login_time     Last login when read 
@@ -117,21 +121,25 @@ return false;
  *
  * @param int readlimit_readlimits        Epoch time limits [plugin option]
  * @uses readlimit_access_session_handler login time plus readlimit_readlimits.
+ * @uses $user_id, $key, $single          to get user meta
+ * @return Bool                            false= reader still has time
  */
 function readlimit_access_check_timelimit()
 {
+    $last_login = '';
+    $user_id    = get_current_user_id(); 
+    $last_login = get_user_meta( $user_id, 'last_login', true);
+	
+    //$ageunix = get_the_time('U');
+    $days_old_in_seconds = ((time() - $last_login));
+    $days_old = (($days_old_in_seconds/86400));
 
-$ageunix = get_the_time('U');
-
-$days_old_in_seconds = ((time() - $ageunix));
-
-$days_old = (($days_old_in_seconds/86400));
-
-if ($days_old > 365) { 
-
-
-return 'yes';;
-}
+    if ($days_old > 1) { 
+        $timelimit = true;
+    } else {
+	$timelimit = false;
+    }
+	return $timelimit;
 }
 
 /**
