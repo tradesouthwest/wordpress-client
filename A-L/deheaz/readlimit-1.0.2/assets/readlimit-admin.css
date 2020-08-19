@@ -1,0 +1,28 @@
+.inline-mezzage {
+    display: none;
+}
+.wntip {
+display: inline-block;
+vertical-align: middle;
+width: 1.1em;
+height: 1.1em;
+background: #adb;
+color:#f4ffff;
+padding: 0px 0px .33px 0px;
+cursor: help;
+border-radius: 50%;
+text-align: center;
+position:relative;
+left: .32em;
+top: -.24em;
+border: thin dashed #eee;
+line-height: 1.1;
+}
+.wntip[title]:focus {
+box-shadow: 0px 0px 4px #2bf;
+}
+.wntip:after {
+content: " ";
+}        .wrap-readlimit-admin .smallinput{
+    width: 90px;
+}
