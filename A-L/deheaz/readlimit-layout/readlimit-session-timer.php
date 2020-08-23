@@ -85,7 +85,13 @@ function readlimit_session_timer_infooter($user_id)
 					? 'Proceed to next article' 
 					: get_option('readlimit_options')['readlimit_rtdtitle'];
 	$rlrcp_message = $rcp_options['restriction_message']; 
-	?>
+	
+/**
+ * Designer notes:
+ * Below is the section which makes the popup. It is technically not a popup but for clarity it is just a hidden div in the footer.
+ * @uses wp_footer to add javascript (vanilla) and position relative/absolute.
+ */
+?>
 	<div class="rlhidden-wrap" style=""> 
 
 		<div class="flhidden-inner-position" style="">
@@ -102,6 +108,7 @@ function readlimit_session_timer_infooter($user_id)
 
 			</div>
 		</div>
+
 	<script id="readlimit-session-timer" type="text/javascript">
 	window.onload = function(){
 		(function(){
@@ -122,7 +129,11 @@ function readlimit_session_timer_infooter($user_id)
 	}
 	</script>
 
-<?php
+<?php 
+	/**
+	 * Ends designer notes and popup section.
+	 * These notes are not in production site so please refer to LarryJudd@codeable prior to any changes.
+	 */
 
 }
 /**
