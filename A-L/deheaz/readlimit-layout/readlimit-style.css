@@ -1,0 +1,41 @@
+.rlhidden:after{
+    content: "";
+    clear: both;
+    display: table;
+}
+div[class^="rlhidden"]{
+    box-sizing: border-box;
+}
+.flhidden-inner-position{
+    position:absolute;
+    top:-12em; left: 2em
+}
+.rlhidden-wrap{
+    position:relative;
+}
+
+.rlhidden{
+    min-width: 94vw;
+    height: 94vh;
+    background: rgba(0,0,0, .86);
+    position: absolute;
+    top: -90vh;
+}
+.rlhidden-box{ 
+    position: relative;
+    margin: 0 auto;
+    top: 200px;
+    width:330px;
+}
+.rlhidden-box > p{
+    text-align: center;
+    height:200px; 
+    width:340px; 
+    border:thin solid #999; 
+    background: #fff;
+    padding:15px;
+}
+.rlhidden-box > p a{
+    margin-top: 20%;
+    display:block;
+}
