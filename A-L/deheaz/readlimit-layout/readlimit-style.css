@@ -43,4 +43,5 @@ div[class^="rlhidden"]{
     max-width: 90%;
     white-space: normal;
     margin: 10% auto 0 auto;
+    cursor: pointer;
 }
