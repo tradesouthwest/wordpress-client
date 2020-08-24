@@ -35,7 +35,7 @@ div[class^="rlhidden"]{
     background: #fff;
     padding:15px;
 }
-.rlhidden-box > p a{
-    margin-top: 20%;
+.rlhidden-box > p .link{
+    margin-top: 10%;
     display:block;
 }
