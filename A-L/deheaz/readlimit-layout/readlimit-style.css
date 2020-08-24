@@ -25,17 +25,22 @@ div[class^="rlhidden"]{
     position: relative;
     margin: 0 auto;
     top: 200px;
-    width:330px;
+    width: 330px;
+    height: 300px;
+    display: block;
+    background: #fff;
 }
-.rlhidden-box > p{
+.rlhidden-box > form{
     text-align: center;
     height:200px; 
-    width:340px; 
+    width:310px; 
     border:thin solid #999; 
     background: #fff;
     padding:15px;
 }
-.rlhidden-box > p .link{
-    margin-top: 10%;
-    display:block;
+.rlhidden-box > form .link{
+    display: block;
+    max-width: 90%;
+    white-space: normal;
+    margin: 10% auto 0 auto;
 }
