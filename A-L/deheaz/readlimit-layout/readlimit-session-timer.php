@@ -99,10 +99,15 @@ function readlimit_session_timer_infooter($user_id)
 		
 				<div id="rlnext" class="rlhidden" style="visibility: hidden; ">
 					<div class="rlhidden-box">
-						<p><a href="<?php print($rlredir_page); ?>" 
-							class="link" title="proceed" data-link="rlredir-page">
-					<?php echo esc_html($rlrcp_message); ?></a></p>
-					<?php //echo esc_html($rlmessage); ?>
+						<?php /* removed link */ ?>
+<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">	
+<input type="hidden" name="action" value="readlimit_update">
+<input type="hidden" name="user_id" value="<?php echo absint($user->ID); ?>">
+<input type="hidden" name="post_id" value="<?php echo absint($post->ID); ?>">
+<?php wp_nonce_field( 'readlimit_update', 'readlimit_nonce' ); ?>
+<input type="submit" value="<?php echo esc_attr($rlrcp_message); ?>" 
+					 class="link" title="proceed" 
+					 data-link="rlredir-page">
 					</div>
 				</div>
 
