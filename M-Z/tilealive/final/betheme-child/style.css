@@ -222,8 +222,7 @@ dd.variation-Countertop div.wcpa_cart_val.wcpa_cart_type_number span.wcpa_cart_p
 .shop_table.woocommerce-checkout-review-order-table .product-name .variation > dd.variation-AreaRugCleaning,
 .shop_table.woocommerce-checkout-review-order-table .product-name .variation > dd.variation-HallwaysandStairs,
 .shop_table.woocommerce-checkout-review-order-table .product-name .variation > dd.variation-HardSurfaceCleaning,
-.shop_table.woocommerce-checkout-review-order-table .product-name .variation > dd.variation-Selecthardsurfaces,
-.shop_table.woocommerce-checkout-review-order-table .product-name .variation [class^="variation-"]{
+.shop_table.woocommerce-checkout-review-order-table .product-name .variation > dd.variation-Selecthardsurfaces{
 max-height: 1px; border: 0; visibility: hidden; overflow: hidden; color:transparent;
 }
 .woocommerce-cart-form__cart-item .product-name .variation dd[class^="variation-Hallwaysand"] div.wcpa_cart_val span,
@@ -309,7 +308,22 @@ table tr:first-child td,
 .woocommerce td.product-name dl.variation:last-child{
   margin-right: .2em;
 }
-
+/* ---------- MODIFY PRODUCT TITLE ------ 1.647em=28px 1.412=24 1.529=26 ---- */
+.cart a.wc-forward, .woocommerce .alert .wc-forward{
+  display: none;
+}
+.wcpa_form_item.wcpa_type_header h3 {
+  font-size: 2em; 
+} 
+.product_title.entry-title.medium-title{
+font-size: 1.529em!important;
+}
+p.order-again {
+  display: none !important;
+}
+.woocommerce .product div.entry-summary > p.price{
+  font-size: 1.3722em!important;
+}
 /* and (max-width: 959px) */
 @media ( min-width: 668px ){ 
  
@@ -458,6 +472,10 @@ li.inline-list-thumb{
 }
 
 }
+@media screen and (min-width: 480px) and (max-width: 767px){
+  /* 1.647em=28px 1.412=24 1.529=26 */
+  .wcpa_form_item.wcpa_type_header h3 {font-size: 2.12844em}
+}
 @media all and (max-width: 456px){
 .shop_table.woocommerce-checkout-review-order-table td.product-name{
   white-space: nowrap;
@@ -489,4 +507,4 @@ li.inline-cart-removeItem a,
   top:-5px;
 }
 
-}
+} 
