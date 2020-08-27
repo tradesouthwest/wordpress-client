@@ -50,14 +50,34 @@ add_action( 'wp_footer', 'betheme_hook_javascript_footer', 5 );
  * Clean woocommerce_cart_item_name. Works on review-orders AND cart templates
  * $product_get_name = apply_filters( 'woocommerce_cart_item_name', 
  * $product_get_name, $cart_item, $cart_item_key ); 
- *
+ * also wc-block-grid__product-title
  */
-add_filter( 'the_title', 'betheme_child_custom_the_title', 10, 2 );
+add_filter( 'the_title', 'betheme_child_custom_the_title', 15, 2 );
 function betheme_child_custom_the_title( $title, $post_id ) 
 {
 
     $post_type = get_post_field( 'post_type', $post_id, true );
-    if( $post_type == 'product' || $post_type == 'product_variation' )
-        $title = str_replace( '|', '<br/>', $title ); 
+    if( $post_type == 'product' || $post_type == 'product_variation' ) {
+    $needle = array('| ');
+    //$haystack = $title;
+    $replace = array( '<br />');
+
+        $title = str_replace( $needle, $replace, $title); 
+        }
     return $title;
 }
+ 
+// Removes the order again button in checkout.
+remove_action( 'woocommerce_order_details_after_order_table', 'woocommerce_order_again_button' );
+/**
+ * Will change the minutes it takes an In Cart booking to expire.
+ * This example reduces the number from 60 to 30.
+ * 
+ * @param  int $minutes 60 is the default passed
+ * @return int          The amount of minutes you'd like to have In Cart bookings expire on. 
+ */
+function change_incart_bookings_expiry_minutes_20170825( $minutes ) {
+	return 30;
+}
+add_filter( 'woocommerce_bookings_remove_inactive_cart_time', 'change_incart_bookings_expiry_minutes_20170825' );
+
