@@ -2,13 +2,14 @@
 /**
  * Add MIME type to Wordpress uploader
  * `define('ALLOW_UNFILTERED_UPLOADS', true)` Can leave vulnerabilities.
+ * @param array $t Mime types keyed by the file extension regex corresponding to those types.
  */
 // multiple types
 function my_myme_types($mime_types){
     $mime_types['svg'] = 'image/svg+xml'; //Adding svg extension
     $mime_types['psd'] = 'image/vnd.adobe.photoshop'; //Adding photoshop files
-    $existing_mimes['epub'] = 'application/epub+zip';
-    $existing_mimes['mobi'] = 'application/x-mobipocket-ebook';
+    $mime_types['epub'] = 'application/epub+zip';
+    $mime_types['mobi'] = 'application/x-mobipocket-ebook';
     
       return $mime_types;
 }
