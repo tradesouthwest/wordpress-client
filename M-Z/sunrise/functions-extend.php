@@ -3,6 +3,7 @@
  * Add MIME type to Wordpress uploader
  * `define('ALLOW_UNFILTERED_UPLOADS', true)` Can leave vulnerabilities.
  * @param array $t Mime types keyed by the file extension regex corresponding to those types.
+ * also check for WPA protected_directory, maybe
  */
 // multiple types
 function my_myme_types($mime_types){
