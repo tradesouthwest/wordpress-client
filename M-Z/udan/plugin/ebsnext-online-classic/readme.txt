@@ -1,6 +1,6 @@
 === EBSNext Online ePay ===
-Contributors: bambora
-Tags: woocommerce, woo commerce, payment, payment gateway, gateway, subscription, subscriptions, bambora, epay, integration, woocommerce bambora, woocommerce epay, woocommerce bambora online classic, psp
+Contributors: tradesouthwest
+Tags: woocommerce, woo commerce, payment, payment gateway, gateway, subscription, subscriptions, woocommerce online
 Requires at least: 4.0.0
 Tested up to: 5.5.3
 Stable tag: 1.0.1
@@ -9,13 +9,13 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 WC requires at least: 2.6
 WC tested up to: 4.6.1
 
-Integrates Bambora Online ePay payment gateway into your WooCommerce installation.
+Integrates Online ePay payment gateway into your WooCommerce installation.
 
 == Description ==
-With Bambora Online ePay for WooCommerce, you are able to integrate the Bambora Online ePay payment window into your WooCommerce installation and start receiving secure online payments.
+With Online ePay for WooCommerce, you are able to integrate the Online ePay payment window into your WooCommerce installation and start receiving secure online payments.
 
 = Features =
-* Receive payments securely through the Bambora Online ePay payment window
+* Receive payments securely through the payment window
 * Create and handle subscriptions
 * Get an overview over the status for your payments directly from your WooCommerce order page.
 * Capture your payments directly from your WooCommerce order page.
