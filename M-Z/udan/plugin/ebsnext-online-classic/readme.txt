@@ -47,6 +47,6 @@ With Online ePay for WooCommerce, you are able to integrate the Online ePay paym
 
 10. Click **Save Changes** when done and you are ready to use Bambora Online ePay
 
-<a href="https://woocommerce.wpguiden.dk/en/configuration">Click here for more information about **Settings**</a>
+<a href="https://woocommerce.com">Click here for more information about **Settings**</a>
 
 == Changelog ==
