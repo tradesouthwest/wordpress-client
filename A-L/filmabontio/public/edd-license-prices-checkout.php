@@ -39,10 +39,13 @@ function edd_license_prices_output_all_postmeta() {
  * @param integer $download_id
  * @return void
  */
-function edd_license_prices_get_cookie()
+add_filter('edd_fees_add_fee', 'edd_license_prices_add_fees_add_fee' );
+function edd_license_prices_add_fees_add_fee()
 {
 	if(isset($_COOKIE['edd_license_upgraded'])) {
-	return true;
+		$args = array( 'amount' => $elp_license_price );
+		
+	return $args;
 	}
 }
 function edd_license_prices_after_purchase_or_removed_item()
