@@ -1,3 +1,4 @@
+<?php 
 global $post, $current_user;
 $data = unserialize(get_post_meta($post->ID, '_list', true));
 if( count($data) != 0 ) {
