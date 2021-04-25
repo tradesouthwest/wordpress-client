@@ -1,4 +1,15 @@
 <?php 
+<?php echo var_export(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR']))); ?></div>
+    
+    <?php require_once('geoplugin.class.php');
+    
+    $geoplugin = new geoPlugin(); 
+    $geoplugin->locate(); 
+    echo 'City: ' . $geoplugin->city; 
+?><?php
+
+
+
 global $post, $current_user;
 $data = unserialize(get_post_meta($post->ID, '_list', true));
 if( count($data) != 0 ) {
@@ -29,4 +40,4 @@ echo $myOptions['firstOption'];
 /* Output:
 2
 */
- echo var_export(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])));
+// echo var_export(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])));
