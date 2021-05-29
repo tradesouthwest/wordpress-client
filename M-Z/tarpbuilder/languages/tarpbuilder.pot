@@ -1,0 +1,269 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TarpBuilder\n"
+"POT-Creation-Date: 2019-09-14 12:26-0700\n"
+"PO-Revision-Date: 2019-09-10 19:12-0700\n"
+"Last-Translator: \n"
+"Language-Team: Tradesouthwest\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e;_n;"
+"_x\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: inc/tarpbuilder-adminpage.php:23 inc/tarpbuilder-adminpage.php:24
+#: inc/tarpbuilder-functions.php:12
+msgid "TarpBuilder"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:57
+msgid "Configuration and Settings"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:64
+msgid "Label for Checkout Field"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:74
+msgid "Shows below the last field in checkout."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:75
+msgid "Also used in orders in admin"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:81
+msgid "Cart Text"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:91
+msgid "Shows below product name in cart. Try: Number of Days"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:92
+msgid "Also shows on line items in checkout"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:98
+msgid "Product Page Increment Name"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:108
+msgid "Text to display on the product page. Try: Select No. of Days"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:109
+msgid ""
+"Text will show above the add-to-cart button to the left of the quantity "
+"field. Could be Days, Hours, People...."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:115
+msgid "Text Before Begin Date"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:125
+msgid "Text to display before datepicker. Try: On: "
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:126
+msgid "Text will show above the add-to-cart button."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:132
+msgid "Product Page Style"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:143
+msgid "Style qunty and date fields. Try: display:block;margin-left:0;"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:144 inc/tarpbuilder-adminpage.php:162
+msgid ""
+"You my add a attribute like margin-left etc. Just write like it is after "
+"style=\"\". "
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:150
+msgid "Style Cart wnd Price"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:161
+msgid "Add inline styles below Cart product name."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:168
+msgid "Tax Options"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:182
+msgid ""
+"This adjust the Additional Fee tax rate only \n"
+"                                           - not the product tax rate."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:184
+msgid ""
+"Choices are: standard | reduced | zero \n"
+"                                  See Woocommerce Settings to set taxes"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:191
+msgid "Activate Zero Entry"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:203
+msgid "Check to allow Add-To-Cart without selecting increments."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:207
+msgid ""
+"Checking will override the default of requiring customers to select a length "
+"of time/increment."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:213
+msgid "Allow Product Price to Match"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:225
+msgid "Check to have product price the same as increment."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:225
+msgid " You still must add fees price to product data."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:229
+msgid ""
+"All this really does is count the number of increments the person selected "
+"in the product page and subtracts one (day) from the increments so the first "
+"(day) is the price of the product."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:452
+msgid "Help and Information"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:455
+msgid "1. Label for Checkout Field"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:456
+msgid " also appears on the customers order invoice and email."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:457
+msgid "2. Admin Order Text"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:458
+msgid ""
+"What the administrator text will be on the Orders page or Woocommerce Orders."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:459
+msgid "3. Display Increment"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:460
+msgid ""
+"Text to display on the product page. Text will show above the add-to-cart "
+"button to the left of the quantity field. Could be Days, Hours, Tours...."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:461
+msgid "4./5. Style"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:462
+msgid ""
+"Styling should be done as if you were writing style properties between the "
+"inline style element. For single-product page use"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:462
+msgid "class selector styles."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:463
+msgid ""
+"Leaving the field blank will also allow you to add your own styles "
+"externally. The selectors for this field are class .quantity.wnd wraps the "
+"label and the input, which is id "
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:464
+msgid "6. Tax Options"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:465
+msgid ""
+"This adjust the Additional Fee tax rate only - not the product tax rate."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:466
+msgid ""
+"Choices are: standard | reduced | zero. See Woocommerce Settings to set taxes"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:467
+msgid "7. Zero Entry"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:468
+msgid ""
+"Check box to allow customers to press the Add-To-Cart button WITHOUT "
+"requiring them to select a duration from the tarpbuilder quantity field. This "
+"gives the option to add rental price of product as the same price of the "
+"rental per day price."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:469
+msgid "8. Allow Product Price to Match Fee"
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:470
+msgid ""
+"Check to have product price the same as increment. You still must add fees "
+"price to product data. All this really does is count the number of "
+"increments the person selected in the product page and subtracts one (day) "
+"from the increments so the first (day) is the price of the product."
+msgstr ""
+
+#: inc/tarpbuilder-adminpage.php:478
+msgid ""
+"For custom configuration of TarpBuilder please email \n"
+"    Larry @ "
+msgstr ""
+
+#: inc/tarpbuilder-functions.php:31
+msgid "TarpBuilder Settings Section can be found here:"
+msgstr ""
+
+#: inc/tarpbuilder-functions.php:38
+msgid "TarpBuilder Settings Link"
+msgstr ""
+
+#: inc/tarpbuilder-postmeta.php:21
+msgid "Rental Days Fee"
+msgstr ""
+
+#: inc/tarpbuilder-postmeta.php:23
+msgid "Price per day."
+msgstr ""
+
+#: inc/tarpbuilder-quantity.php:151
+#, php-format
+msgid "%s cannot be added. You must add increment"
+msgstr ""
+
+#: tarpbuilder.php:30
+msgid "This plugin requires that WooCommerce is installed and activated."
+msgstr ""

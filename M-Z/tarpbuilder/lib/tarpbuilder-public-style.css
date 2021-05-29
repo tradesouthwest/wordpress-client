@@ -1,0 +1,305 @@
+/* Unitizr plugin public styles
+ */
+ [class^="tarpbuilder-"] {
+	box-sizing: inherit;
+}
+
+[class^="trison-"] input {
+	box-sizing: border-box;
+}
+.product_cat_custom-tarps .woocommerce-variation-price .price:after{
+  content: " per sq. ft.";
+  position: relative;
+  color: inherit;
+  font-size: smaller;
+}
+#price_calculator input[type="number"] {
+	width: 75px;
+	margin-left: 5px;
+	float: left;
+	text-align: initial;
+	padding: 5px;
+} 
+/* Chrome, Safari, Edge, Opera */
+.trison-hidemarker input::-webkit-outer-spin-button,
+.trison-hidemarker input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+.trison-hidemarker input[type=number] {
+	-moz-appearance: textfield;
+	float: none;
+}
+
+.trison-hidemarker {
+
+width: 100%;
+padding: 4px 1px;
+clear: both;
+position: relative;
+top: .25em;
+}
+.bkgrnd-Blue{
+  background-color: #09f;
+  background-image: url(https://leadspilot.com/blog/wp-content/uploads/2020/11/bluecolor.jpeg);
+  color:#f2f2f2;}
+.bkgrnd-Black{
+background-color: #222;
+  background-image: url(https://leadspilot.com/blog/wp-content/uploads/2020/11/blackcolor.jpeg);
+  color:#fafafa}
+.bkgrnd-Red{
+background-color: #920;
+  background-image: url(https://leadspilot.com/blog/wp-content/uploads/2020/11/redcolor.jpeg);
+  color:#cafafa}
+#tarpsim-table{
+  width: 98.8992%;
+  margin: 100px auto 0 auto;
+  table-layout: auto;
+}
+.tarpbuilder-variations td{
+border:none;
+}
+#tarpsim-table td,
+#tarpsim-table tr{
+border-style: dashed;
+border: 1px dashed #fff;
+}
+#grommet_calculator td{
+text-align: left;
+}
+#tarpsim-table input[type="text"]{
+padding:0;
+background: rgba(252,252,252, .24);
+color: #fff;
+border: none;
+width: 50px;
+padding: 4px;
+}
+#tarpsim-table .tpsim-left input[type="text"],
+#tarpsim-table .tpsim-right input[type="text"]{
+  display: block;
+  clear:right;
+}
+#grommet_calculator .tripad div{
+
+float: left;
+}
+.grom-foot{
+color:maroon;
+font-size: smaller;
+}
+.max-wsel,
+#grommet_calculator .tripad input{
+    border: none;
+	background: none;
+	background-image: none;
+	width:4em;
+}
+.woocommerce div.product form.cart table td.tripad {
+	padding-left: 5px;
+	padding-bottom: 0;
+	padding-top: 15px;
+}
+
+.trison-tdright {
+	text-align: right;
+	min-width: 280px;
+}
+
+#price_calculator .amount_needed {
+	min-width: 67px;
+}
+
+.trison-inline strong:after {
+	content: " ";
+	clear: both;
+}
+
+.trison-inline strong {
+	float: left;
+	width: min-content;
+}
+
+.tarpbuilder-canvas {
+	height: auto;
+	 
+	padding: 0;
+}
+.tarp-color-name{
+  font-weight: 700;
+  text-align:center;
+  text-shadow: .5px .5px 1px #222;
+	box-shadow: 0 4px 0 12px #eee;
+  transform: rotate(-20deg);
+}
+@media screen and (min-width:992px) {
+	.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary {
+		margin-top: 0;
+	}
+	#tarpsim-table{
+	max-width: 480px;
+	height: 100%;
+	}
+	.tarpbuilder-canvas{
+	height: auto;
+	}
+}
+
+.woocommerce div.product form.cart .variations select,
+.custom-tarp-order-form select {
+	appearance: none;
+	background-color: transparent;
+	border: none;
+	padding: 0 1em 0 0;
+	margin: 0;
+	width: 100%;
+	font-family: inherit;
+	font-size: inherit;
+	cursor: inherit;
+	line-height: inherit;
+	outline: none;
+}
+
+.woocommerce div.product form.cart .variations select,
+.custom-tarp-order-form select {
+	width: 100%;
+	min-width: 15ch;
+	max-width: 30ch;
+	border: 1px solid #ddd;
+	border-radius: 0.125em;
+	padding: 0.25em 0.5em;
+	font-size: 1.25rem;
+	cursor: pointer;
+	line-height: 1.1;
+	background-color: #09d;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+	  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .65em auto, 100%;
+	font-size: inherit;
+}
+
+.woocommerce div.product form.cart .variations select::after,
+.custom-tarp-order-form select::after {
+	content: "-";
+	position: relative;
+	width: 0.8em;
+	height: 0.5em;
+	color: #888;
+	background-color: #000;
+  /* clip-path: polygon(100% 0%, 0 0%, 50% 100%); */
+	display: grid;
+}
+.max-wsel{
+width: 4.2em;
+overflow:hidden;
+display:inline-block;
+}
+.untzclearfix:before,
+ .untzclearfix:after {
+	content: " ";
+	clear: both;
+}
+
+.untzclearfix:after {
+	display: table;
+	width: 100%;
+	height: 1px;
+	padding: 5px 0;
+}
+
+.wndfee span {
+	color: inherit;
+}
+
+.wndfee {
+	padding: 3px 1px;
+}
+
+.alignwnd {
+	text-align: right;
+	padding-top: .22em;
+}
+
+.alignwnd:after {
+	content: "";
+	clear: both;
+	display: block;
+	width: 100%;
+	height: 1px;
+	background: #999;
+	margin-bottom: 1em;
+}
+
+.alignwnd:first-child::before {
+	content: "";
+	clear: both;
+	display: block;
+	width: 100%;
+	height: 1px;
+	background: #999;
+	margin-bottom: 1em;
+}
+
+.alignwnd input#wnd_quantity,
+.alignwnd input#wnd_wndbegin {
+	margin-bottom: 1em;
+}
+
+.rtl .wndfee span {
+	padding-right: 1em;
+}
+
+.rtl .alignwnd label,
+.rtl .alignwnd input {
+	display: block;
+	float: left;
+	position: relative;
+	margin-bottom: 1em;
+	margin-top: 1em;
+}
+
+.rtl .alignwnd {
+	text-align: left;
+}
+
+.wndclearfix:before,
+.wndclearfix:after {
+	content: "";
+	clear: both;
+}
+
+.wndclearfix:after {
+	display: table;
+}
+
+#UnitPrd {
+	width: 100%;
+	display: block;
+	height: 100%;
+	float: left;
+}
+
+.single-product .woocommerce-notices-wrapper ul.woocommerce-error li {
+	min-height: 3em;
+	background: #ffffff;
+}
+
+.variation.wnddays {
+	display: block;
+}
+
+span.variation.wnddays::after {
+	content: " ";
+	clear: both;
+	display: table;
+}
+
+.woocommerce-cart.woocommerce-page .hentry .woocommerce form.woocommerce-cart-form td.product-name dl.variation:first-child {
+	position: relative;
+	top: -2em;
+	left: 28%;
+}
