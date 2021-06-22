@@ -20,8 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 <form method="post" enctype="multipart/form-data" class="cart cart_group bundle_form <?php echo esc_attr( $classes ); ?>"><?php
-if ( function_exists('boekenpakket_bundles_top_bundle_price') ) {
-echo boekenpakket_bundles_top_bundle_price($product); } 
+if ( function_exists('boekenpakket_bundles_top_bundle_price') ) { 
+	echo boekenpakket_bundles_top_bundle_price($product); } 
 	/**
 	 * 'woocommerce_before_bundled_items' action.
 	 *
@@ -62,7 +62,7 @@ echo boekenpakket_bundles_top_bundle_price($product); }
 	 */
 	do_action( 'woocommerce_bundles_add_to_cart_wrap', $product );
 
-?></form><?php
+?></form><?php 
 	/** WC Core action. */
 	do_action( 'woocommerce_after_add_to_cart_form' );
 ?>

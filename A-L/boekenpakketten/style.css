@@ -14,3 +14,7 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
 .ae-element-woo-add-to-cart .quantity .qty {
 padding:2px;
 }
+.woocommerce-cart td.product-quantity,
+.woocommerce-checkout .bundle_table_item td.product-name strong.product-quantity{
+color: transparent;
+}

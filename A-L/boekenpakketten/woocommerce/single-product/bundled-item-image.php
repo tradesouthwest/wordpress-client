@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$image         = get_the_post_thumbnail( $product_id, 'thumbnail' ); 
 
 		$html  = '<figure class="bundled_product_image woocommerce-product-gallery_image">';
-		$html .= sprintf( '<a href="%1$s" class="image zoom" title="%2$s" target="_blank" data-rel="%3$s">%4$s</a>', $product_link, $image_title, $image_norel, $image );
+		$html .= sprintf( '<a href="%1$s" class="image zoom" title="%2$s" target="_self" data-rel="%3$s">%4$s</a>', $product_link, $image_title, $image_norel, $image );
 		$html .= '</figure>';
 
 	} else {

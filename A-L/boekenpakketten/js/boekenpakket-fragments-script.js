@@ -1,16 +1,21 @@
+/* script for topprice 
+ * version: 1.0.0 
+ */
 jQuery(function ($) {
-		"use strict";
+    "use strict";
+    $(document).ready(function(){ 
     
-    $(document).ready(function(){
-
-        $(".bundled_qty").change(function(e){
-            e.preventDefault();
-
+        $(window).blur( function(){    
         var upprice = $(".bundle_price").text();
-        
-        $("#bpTop").html(upprice);
-        $(".bndl_prc").css("display", "none");
-        console.log( upprice );   
+            $(".bndl_prc").html(upprice);
+                console.log( upprice + "page loaded" );
         })
-    })
+
+        $(".bundled_qty").change(function(){
+                    var uppprice = $(".bundle_price").text();
+                    $("#bpTop").html(uppprice);
+                    $(".bndl_prc").css("display", "none");
+                        console.log( uppprice );   
+        })
+    });    
 });
