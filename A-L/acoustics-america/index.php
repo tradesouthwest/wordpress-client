@@ -1,0 +1,1 @@
+<?php // Live long and prosper.
