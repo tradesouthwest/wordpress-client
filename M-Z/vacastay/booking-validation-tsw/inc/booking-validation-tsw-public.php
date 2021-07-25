@@ -58,10 +58,10 @@ function booking_validation_tsw_get_additional_costs_items($order)
 add_action('booking_validation_after_booking_summary','booking_validation_tsw_checkout_html' );
 function booking_validation_tsw_checkout_html($data)
 {
-    $deposit_value = get_post_meta($data->listing_id,"_security_deposit",true);  
-	$cleaning_value = get_post_meta($data->listing_id,"_cleaning_fee",true); 
+    $deposit_value   = get_post_meta($data->listing_id,"_security_deposit",true);  
+	$cleaning_value  = get_post_meta($data->listing_id,"_cleaning_fee",true); 
 	$currency_symbol = get_woocommerce_currency_symbol();
-	
+	$totalfees       = $cleaning_value+$deposit_value;
 	if( '' != $deposit_value ) : 
 	ob_start();
     echo '<li id="booking-confirmation-security-deposit" style="width: 100%;color: #888;margin: 2px 0;transition: 0.2s;cursor: default;overflow: hidden;">
@@ -76,6 +76,9 @@ function booking_validation_tsw_checkout_html($data)
 			<h5 style="font-weight:600">Cleaning Fee <span style="float: right;font-weight: 400;text-align: right;"> ' .$currency_symbol. '' .$cleaning_value . '</span></h5>
 			<input id="_cleaning_fee" type="hidden" name="_cleaning_fee" value="' .$cleaning_value . '">
 		</li>';
+	echo '<li style="visibility:hidden"><input type="hidden" id="totalfees" name="totalfees" value="' . esc_attr($totalfees) . '"></li>';	
+	echo '<li id="booking-confirmation-agreeto"><label for="tsw-agreeto"><span style="float:left;">I agree to additional fees above: </span>
+	        <input type="checkbox" id="tsw-agreeto" style="height: 1.4em;position: relative;left: 45%;top: -21px;"></label></li>';
 	else: 
 		    echo '<li>&nbsp;</li>';
 		    endif;
@@ -84,7 +87,6 @@ function booking_validation_tsw_checkout_html($data)
     	echo $output;
 		return false;
 }
-
 /**
  * add post meta (fees) to line item (_order_items)
  * 
