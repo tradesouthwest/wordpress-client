@@ -78,7 +78,7 @@ function booking_validation_tsw_checkout_html($data)
 		</li>';
 	echo '<li style="visibility:hidden"><input type="hidden" id="totalfees" name="totalfees" value="' . esc_attr($totalfees) . '"></li>';	
 	echo '<li id="booking-confirmation-agreeto"><label for="tsw-agreeto"><span style="float:left;">I agree to additional fees above: </span>
-	        <input type="checkbox" id="tsw-agreeto" style="height: 1.4em;position: relative;left: 45%;top: -21px;"></label></li>';
+	        <input type="checkbox" id="tsw-agreeto" value="" required="required" style="height: 1.4em;position: relative;left: 45%;top: -21px;"></label></li>';
 	else: 
 		    echo '<li>&nbsp;</li>';
 		    endif;
