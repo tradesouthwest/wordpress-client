@@ -133,9 +133,16 @@ $totals = $order->get_order_item_totals();
 											</li>
 										</ul>
 									</div>	
-									<?php } 
+									<?php } ?>
 									
-									
+									<?php 	/* ************ added by larry@codeable ************* */ 
+                                    if( function_exists( 'booking_validation_tsw_render_extra_fees' ) ) { ?> 
+                                    <div class="line-item-tsw">
+                                        <?php do_action( 'booking_valtsw_extra_fees_html', $listing_id ); ?>
+                                    </div>
+                                    <?php 
+				    				}  /* ends added by larry */ 
+                                    ?>			<?php 
 							}
 							?>
 						</td>
