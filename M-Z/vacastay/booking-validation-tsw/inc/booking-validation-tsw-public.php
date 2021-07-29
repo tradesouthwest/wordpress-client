@@ -80,7 +80,9 @@ function booking_validation_tsw_extend_listeo_booking_widget($post_id)
     $deposit_value   = get_post_meta($post_id, "_security_deposit",true);  
 	$cleaning_value  = get_post_meta($post_id, "_cleaning_fee",true); 
 	$additional_fees = ($deposit_value + $cleaning_value) * 1; 
-
+	$currency_abbr   = get_option( 'listeo_currency' );
+	$currency_postion = get_option( 'listeo_currency_postion' );
+    $currency_symbol  = Listeo_Core_Listing::get_currency_symbol($currency_abbr);
 	if( '' != $deposit_value ) : 
 	ob_start();
 	?>
