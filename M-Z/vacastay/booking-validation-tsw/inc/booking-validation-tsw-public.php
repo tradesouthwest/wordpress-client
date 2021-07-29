@@ -10,22 +10,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-// Display html for costs
-add_action('tsw_get_additional_costs_html', 'booking_validation_tsw_get_additional_costs_html' );
-function booking_validation_tsw_get_additional_costs_html($order) 
-{
-    global $woocommerce;
-    $add_depsoit = $add_cleaning = 0;
-    $listing_id  = get_post_meta( $order->get_id(), 'listing_id', true ); 
-	$add_deposit = get_post_meta( $listing_id, '_security_deposit', true ); 
-	$add_clean   = get_post_meta( $listing_id, '_cleaning_fee', true ); 
-	$_feez       = $add_deposit + $add_clean;
-    $add_feez    = round($_feez, 2);            
-	if ( $add_feez > 0 )
-	echo '<span> Security and Cleaning Fee ' . get_woocommerce_currency_symbol() . '' . $add_feez . '</span>';
-}
-add_filter( 'woocommerce_add_cart_item_data', 'tsw_display_deposit_data_in_cart',2,4);
 /** 
  * @_cart_item_price only returns data, does not total
  * display ppd next to price
@@ -35,18 +19,19 @@ add_filter( 'woocommerce_add_cart_item_data', 'tsw_display_deposit_data_in_cart'
  * @return array $subtotal, $this, $item, $inc_tax, $round
  */ 
 add_action('tsw_get_additional_costs_items', 'booking_validation_tsw_get_additional_costs_items' );
-function booking_validation_tsw_get_additional_costs_items($order) 
+function booking_validation_tsw_get_additional_costs_items($post_inf) 
 {
-    global $woocommerce;
+    $post_inf = $post_info->ID;
     //$order_subtotal = $order->get_subtotal(); 
     $add_deposit = $add_cleaning = 0;
-    $listing_id  = get_post_meta( $order->get_id(), 'listing_id', true ); 
-	$add_deposit = get_post_meta( $listing_id, '_security_deposit', true ); 
-	$add_clean   = get_post_meta( $listing_id, '_cleaning_fee', true ); 
-	
+	$add_deposit = get_post_meta( $post_inf, '_security_deposit', true ); 
+	$add_clean   = get_post_meta( $post_inf, '_cleaning_fee', true ); 
 	$add_feez       = $add_deposit + $add_clean;
-    
+    if( $add_feez > 0 ):
         return round($add_feez, 2);
+        else: 
+            return false;
+        endif;
 } 
 /**
  * Checkout field Validation
@@ -62,79 +47,236 @@ function booking_validation_tsw_checkout_html($data)
 	$cleaning_value  = get_post_meta($data->listing_id,"_cleaning_fee",true); 
 	$currency_symbol = get_woocommerce_currency_symbol();
 	$totalfees       = $cleaning_value+$deposit_value;
-	if( '' != $deposit_value ) : 
+    if( '' != $deposit_value ) : 	
 	ob_start();
+	
     echo '<li id="booking-confirmation-security-deposit" style="width: 100%;color: #888;margin: 2px 0;transition: 0.2s;cursor: default;overflow: hidden;">
 			<h5 style="font-weight:600">Security Deposit <span style="float: right;font-weight: 400;text-align: right;"> ' .$currency_symbol. '' .$deposit_value . '</span></h5>
 			<input id="_security_deposit" type="hidden" name="_security_deposit" value="' .$deposit_value . '">
 		</li>';
-	else: 
-		    echo '<li>&nbsp;</li>';
-		    endif;
-	if( '' != $cleaning_value ) : 	
+	
 	echo '<li id="booking-confirmation-cleaning-fee" style="width: 100%;color: #888;margin: 2px 0;transition: 0.2s;cursor: default;overflow: hidden;">
 			<h5 style="font-weight:600">Cleaning Fee <span style="float: right;font-weight: 400;text-align: right;"> ' .$currency_symbol. '' .$cleaning_value . '</span></h5>
 			<input id="_cleaning_fee" type="hidden" name="_cleaning_fee" value="' .$cleaning_value . '">
 		</li>';
 	echo '<li style="visibility:hidden"><input type="hidden" id="totalfees" name="totalfees" value="' . esc_attr($totalfees) . '"></li>';	
 	echo '<li id="booking-confirmation-agreeto"><label for="tsw-agreeto"><span style="float:left;">I agree to additional fees above: </span>
-	        <input type="checkbox" id="tsw-agreeto" value="" required="required" style="height: 1.4em;position: relative;left: 45%;top: -21px;"></label></li>';
-	else: 
-		    echo '<li>&nbsp;</li>';
-		    endif;
+	        <input type="checkbox" id="tsw-agreeto" value="" required="required" style="height: 1.4em;position: relative;left: 45%;top: -21px;"></label></li>
+	        <li class="tsw-error"><span class="tsw-valid">This field is required</span></li>'; 
+	        
+	$output = ob_get_clean();
 	
-    $output = ob_get_clean();
     	echo $output;
-		return false;
+    	else: echo '<li>&nbsp;</li>';
+    endif;
 }
+
+// display fields in booking widget
+add_action('booking_validation_tsw_render_listeo_booking_widget','booking_validation_tsw_extend_listeo_booking_widget');
+function booking_validation_tsw_extend_listeo_booking_widget($post_id)
+{
+    $post_id = (empty($post_id)) ? get_the_ID() : $post_id;
+    $additional_fees = $deposit_value = $cleaning_value = 0; 
+    $deposit_value   = get_post_meta($post_id, "_security_deposit",true);  
+	$cleaning_value  = get_post_meta($post_id, "_cleaning_fee",true); 
+	$additional_fees = ($deposit_value + $cleaning_value) * 1; 
+
+	if( '' != $deposit_value ) : 
+	ob_start();
+	?>
+
+    <div class="booking-additional-cost" style="display: block;margin-top: 15px;margin-bottom: -5px;padding-top: 15px;border-top: 1px solid #e8e8e8;">
+		<strong style="font-weight:600"><?php esc_html_e('Additional Fees','listeo_core'); ?></strong>
+		<span data-price="<?php echo esc_attr($additional_fees); ?>" style="text-align: right;float: right;font-weight:600;font-size: 16px;position: relative;">
+		<?php if($currency_postion == 'before') { echo $currency_symbol; } 
+			 echo booking_validation_formatted_price($additional_fees);  
+			if($currency_postion == 'after') { echo $currency_symbol; } ?>
+        </span>
+        <input id="_cleaning_fee" type="hidden" name="_cleaning_fee" value="<?php echo esc_attr($cleaning_value); ?>">
+        <input id="_security_deposit" type="hidden" name="_security_deposit" value="<?php echo esc_attr($deposit_value); ?>">
+        <input id="additional_rental_fees" type="hidden" name="additional_rental_fees" value="<?php echo esc_attr($additional_fees); ?>"><?php /* unique_id maybe */ ?>
+    </div>
+
+    <?php 
+    else: echo '<small>' . esc_html("Additional Fees may apply.") . '</small>'; ?><?php 
+    endif;
+	$tswout = ob_get_clean();
+	
+	    echo $tswout;
+}
+
+/**
+ * Render field in checkout
+ * AKA checkout @subpackage form-pay in theme
+ */ 
+add_action('tsw_add_deposit_data_to_cart', 'booking_validation_tsw_display_deposit_data_in_cart' );
+function booking_validation_tsw_display_deposit_data_in_cart($order) {
+	
+	$additional_fees = 0; //$htmlout = ''; 
+	$listing_id      = get_post_meta($order->get_id(),'listing_id', true );
+    //$deposit_value  = get_post_meta( $listing_id, '_security_deposit', true );  
+    //$cleaning_value = get_post_meta( $listing_id, '_cleaning_fee', true ); 
+    $additional_fees = $deposit_value+$cleaning_value; 
+    ob_start();
+    if( '' != $deposit_value ) : ?>	
+        <tr>
+			<th scope="row" colspan="2"><?php echo esc_html('Security Deposit'); ?></th><?php // @codingStandardsIgnoreLine ?>
+			<td class="additional-fees"><?php echo booking_validation_formatted_price( $deposit_value); ?><?php // @codingStandardsIgnoreLine ?>
+			<input id="_security_deposit" type="hidden" name="_security_deposit" value="<?php echo esc_attr($deposit_value); ?>"></td>
+		    
+		</tr>
+	<?php endif; ?>	
+	<?php if( '' != $cleaning_value ) : ?>
+		<tr>
+			<th scope="row" colspan="2"><?php echo esc_html('Cleaning Fee'); ?></th><?php // @codingStandardsIgnoreLine ?>
+			<td class="additional-fees"><?php echo booking_validation_formatted_price($cleaning_value); ?><?php // @codingStandardsIgnoreLine ?>
+		    <input id="_cleaning_fee" type="hidden" name="_cleaning_fee" value="<?php echo esc_attr($cleaning_value); ?>"></td>
+		</tr>
+	<?php  //maybe_save_meta_data()
+	endif; 
+	$htmlout = ob_get_clean();
+	
+	    echo $htmlout;
+
+}
+
+add_action('booking_valtsw_extra_fees_html', 'booking_validation_tsw_render_extra_fees');
+function booking_validation_tsw_render_extra_fees($listing_id){
+    
+    $deposit  = get_post_meta( $listing_id, '_security_deposit', true );
+	$cleaning = get_post_meta( $listing_id, '_cleaning_fee', true );
+	$currency_abbr    = get_option( 'listeo_currency' );
+	$currency_postion = get_option( 'listeo_currency_postion' );
+	$currency_symbol  = Listeo_Core_Listing::get_currency_symbol($currency_abbr);
+
+    ob_start(); 
+	echo
+	'<div class="inner-booking-list">'; ?>
+        <?php if( '' != $deposit ) : ?>
+        <?php echo '<h5>' . esc_html__("Security Deposit:", "listeo") . '</h5>
+    	<ul class="listeo_booked_fees_list">
+    	    <li class="line-item">' . esc_html($currency_symbol) . '<span>' . esc_attr($deposit) . '</span>
+    	    <input id="_security_deposit" type="hidden" name="_security_deposit" value="'. esc_attr($deposit) .'"></li>
+    	    </ul>'; ?>
+    	<?php endif; ?>
+    <?php echo '</div>
+    
+    <div class="inner-booking-list">'; ?>
+        <?php if( '' != $cleaning ) : ?>
+        <?php echo '<h5>' . esc_html__("Cleaning Fee:", "listeo") . '</h5>
+    	<ul class="listeo_booked_fees_list">
+    	    <li class="line-item">' . esc_html($currency_symbol) . '<span>' . esc_attr($cleaning) . '</span>
+    	    <input id="_cleaning_fee" type="hidden" name="_cleaning_fee" value="'. esc_attr($cleaning) .'"></li>
+    	    </ul>'; ?>
+    	<?php endif; ?>
+    <?php echo '</div>';	
+ 
+    $output = ob_get_clean();
+    
+        echo $output;
+    
+}
+
+// add fees to cart/checkout
+add_action( 'woocommerce_before_calculate_totals', 'booking_validation_tsw_subtotal');
+function booking_validation_tsw_subtotal() {
+    global $woocommerce;
+    //Get the custom field value
+    $addes_cost = 0;
+    $deposit_value   = get_post_meta($post_id, "_security_deposit",true);  
+	$cleaning_value  = get_post_meta($post_id, "_cleaning_fee",true); 
+	$additional_fees = absint($deposit_value + $cleaning_value); 
+
+    //Check if we have a custom shipping cost, if so, display it below the item price
+    if ($additional_fees) {
+        $added_cost = $additional_fees;
+    } else {
+        $added_cost = 0;   
+    }
+    $woocommerce->cart->add_fee( __('Rental Fees', 'woocommerce'), $added_cost );
+    
+}
+
 /**
  * add post meta (fees) to line item (_order_items)
+ * @uses woocommerce_checkout_create_order_line_item <not working
  * 
  */ 
-add_filter( 'woocommerce_add_cart_item_data', 'tsw_display_deposit_data_in_cart',2,4); 
-function tsw_display_deposit_data_in_cart($cart_item_data,$product_id,$variation_id,$quantity)
-{
-
-    if( ! empty( $_POST['_security_deposit']))
-    {
-        $cart_item_data['_security_deposit'] = $_POST['_security_deposit'];
-	}
-	if( ! empty( $_POST['_cleaning_fee']))
-    {
-        $cart_item_data['_cleaning_fee'] = $_POST['_cleaning_fee'];
-	}
-		return $cart_item_data;
-}
-
-add_action( 'woocommerce_add_order_item_meta', 'misha_order_item_meta', 10, 2 );
-
-// $item_id – order item ID
-// $cart_item[ 'product_id' ] – associated product ID
-function misha_order_item_meta( $item_id, $cart_item ) {
-
-	// get product meta
-	$security_deposit = get_post_meta( $cart_item[ 'product_id' ], '_security_deposit', true );
-	$cleaning_fee = get_post_meta( $cart_item[ 'product_id' ], '_cleaning_fee', true );
-
-	// if not empty, update order item meta
- 	if( ! empty( $security_deposit ) ) {
-		wc_update_order_item_meta( $item_id, '_security_deposit', $security_deposit );
-	}
-	if( ! empty( $cleaning_fee ) ) {
-		wc_update_order_item_meta( $item_id, '_cleaning_fee', $cleaning_fee );
-	}
+//add_filter( 'woocommerce_checkout_create_order_line_item', 'booking_validation_tsw_addfees_data_to_cart',10,4); 
+function booking_validation_tsw_addfees_data_to_cart( $item, $cart_item_key, $values, $order){
+	$security_deposit = get_post_meta( $item->get_product_id(), '_security_deposit', true );
+	$cleaning_fee = get_post_meta( $item->get_product_id(), '_cleaning_fee', true );
 	
+	// Update order item meta
+    if ( ! empty( $security_deposit ) ){
+        $item->update_meta_data( '_security_deposit', $security_deposit ); 
+        
+    }
+    if ( ! empty( $cleaning_fee ) ){
+        $item->update_meta_data( '_cleaning_fee', $cleaning_fee ); 
+        
+    }
 }
 
+add_action( 'woocommerce_checkout_update_order_meta', 'codeablex_validate_referral_id_now', 12, 1 );
+function codeablex_validate_referral_id_now( $order ) 
+{
+    $order     = wc_get_order( $order_id ); 
+
+    $deposit_value = get_post_meta( $order_id, '_security_deposit', true ); 
+    // Update customer source.
+    if( $deposit_value ) : 
+        $deposit_cost = ( empty( $deposit_value )) ? '0' : sanitize_text_field( $deposit_value );
+        $order->add_meta( $order_id, '_security_deposit', $deposit_cost );            
+        
+    endif;
+    $cleaning_value = get_post_meta( $order_id, '_cleaning_fee', true ); 
+    // Update customer source.
+    if( $cleaning_value ) : 
+        $cleaning_cost = ( empty( $cleaning_value )) ? '0' : sanitize_text_field( $cleaning_value );
+        $order->add_meta( $order_id, '_cleaning_fee', $cleaning_cost );            
+        
+    endif;
+}
+
+// helper utility
+function booking_validation_formatted_price($tswprice)
+{
+    $unit    = intval( $tswprice );
+    $sep     = '.';
+    $decimal = sprintf( '%02d', ( $tswprice-$unit ) * 100 );
+    $dol     = "$";
+        return sprintf( '%s%d%s%s', $dol, $unit, $sep, $decimal );
+}
 /**
  * For debug only
  */
-//add_action('wp_footer', 'booking_validation_tsw_meta_html');
-function booking_validation_tsw_metavalues($meta)
+// Returns price of additional fees (currently not used)
+add_action('tsw_get_additional_costs_html', 'booking_validation_tsw_get_additional_costs_html' );
+function booking_validation_tsw_get_additional_costs_html($order) 
 {
-	$meta = (empty ( $meta ) ) ? '' : $meta;
+    global $woocommerce;
+    $add_depsoit = $add_cleaning = 0;
+    $listing_id  = get_post_meta( $order->get_id(), 'listing_id', true ); 
+	$add_deposit = get_post_meta( $listing_id, '_security_deposit', true ); 
+	$add_clean   = get_post_meta( $listing_id, '_cleaning_fee', true ); 
+	$_feez       = $add_deposit + $add_clean;
+    $add_feez    = round($_feez, 2);            
+	if ( $add_feez > 0 )
+	//echo '<span> Security and Cleaning Fee ' . get_woocommerce_currency_symbol() . '' . $add_feez . '</span>';
+	echo $add_feez;
+}
+/**
+ * For debug only
+ */
+//add_action('wp_footer', 'booking_validation_tsw_metavalues');
+function booking_validation_tsw_metavalues() {
+  
+	//$meta = (empty ( $meta ) ) ? '' : $meta;
+ $postmetas = get_post_meta(get_the_ID());
 
-	$meta_key = get_post_meta( get_the_ID(), $meta, true );
+	foreach($postmetas as $meta_key=>$meta_value) {
+		echo $meta_key . ' : ' . $meta_value[0] . '<br/>';
+	} 
 
-		return $meta_key;
 }
