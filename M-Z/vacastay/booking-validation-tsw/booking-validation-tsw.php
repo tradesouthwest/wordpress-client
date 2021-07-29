@@ -50,19 +50,27 @@ register_deactivation_hook( __FILE__, 'booking_validation_tsw_plugin_deactivatio
  *
  * @since 1.0.0 
  */
-if ( !function_exists('booking_validation_tsw_addplugin_scripts') ) :  
+
 function booking_validation_tsw_addplugin_scripts() 
 {
-    $ver      = "1.0.0";
+    $ver      = time();
+    // Register styles
+    wp_enqueue_style( 'booking-validation-front', 
+                        plugins_url('css/plugin-frontend.css', __FILE__),
+                        array(), $ver, false );
     // Register Scripts
     wp_register_script( 'booking-update-cart-items', 
-					   plugins_url('js/booking-update-cart-items-ajax.js', __FILE__ ), 
+					   plugins_url('js/booking-validation-plugin.js', __FILE__ ), 
+					   array('jquery', 'jquery-cookie'), $ver, false );
+    /* wp_register_script( 'booking-update-cart-cookie', 
+					   plugins_url('js/jquery.cookie.min.js', __FILE__ ), 
 					   array('jquery'), $ver, true );
-   
+    wp_enqueue_script( 'jquery-cookie' ); */
     wp_enqueue_script( 'booking-update-cart-items' );
+    
      
 }
-endif;
+
 /** 
  * Admin side specific
  *
@@ -80,8 +88,9 @@ function booking_validation_tsw_load_admin_scripts()
 }
 
 include( plugin_dir_path( __FILE__ ) . 'inc/booking-validation-tsw-public.php' ); 
-//include( plugin_dir_path( __FILE__ ) . 'admin/booking-validation-tsw-admin.php' ); 
+include( plugin_dir_path( __FILE__ ) . 'inc/booking-validation-tsw-metadata.php' ); 
+include( plugin_dir_path( __FILE__ ) . 'admin/booking-validation-tsw-admin.php' ); 
 // initiate hooks
-add_action( 'wp_enqueue_scripts', 'booking_validation_tsw_addplugin_scripts');
-//add_action( 'admin_enqueue_scripts', 'booking_validation_tsw_load_admin_scripts' );   
+add_action( 'wp_enqueue_scripts', 'booking_validation_tsw_addplugin_scripts', 99);
+add_action( 'admin_enqueue_scripts', 'booking_validation_tsw_load_admin_scripts' );   
 ?>
