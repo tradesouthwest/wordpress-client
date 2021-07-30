@@ -10,7 +10,21 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+/**
+ * Simple validate to check if post_meta exists
+ * @return Boolean
+ */
+function bkvaltsw_is_widget_ready()
+{
+    global $post;
+    $deposit  = get_post_meta($post->ID,'_security_deposit',true);
+    $cleaning = get_post_meta($post->ID,'_cleaning_fee',true);
+    $rtn = false;
+    if ( !empty( $deposit || $cleaning ) ) { $rtn = true; }
+    
+        return $rtn;
+    
+}
 // Display html for costs
 add_action('tsw_get_additional_costs_html', 'booking_validation_tsw_get_additional_costs_html' );
 function booking_validation_tsw_get_additional_costs_html($order) 
