@@ -67,7 +67,7 @@ function booking_validation_tsw_get_additional_costs_items($post_inf)
 /**
  * Checkout field Validation
  * @since 1.0.1
- * https://rudrastyh.com/woocommerce/order-items.html
+ * @subpackage listeo/woocommerce/checkout/pay-form.php
  * @param string $field Value of text field in product meta
 */
 //add_action( 'woocommerce_single_product_summary', 'booking_validation_tsw_checkout_html' );
@@ -102,6 +102,12 @@ function booking_validation_tsw_checkout_html($data)
     endif;
 }
 
+/**
+ * Single `cart` field Validation
+ * @since 1.0.1
+ * @subpackage listeo-core/include/class-listeo-core-widget.php
+ * @param string $field Value of text field in product meta
+*/
 add_action('booking_validation_tsw_render_listeo_booking_widget','booking_validation_tsw_extend_listeo_booking_widget');
 function booking_validation_tsw_extend_listeo_booking_widget($post_id)
 {
