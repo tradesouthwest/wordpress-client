@@ -11,6 +11,73 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function booking_valtsw_product_and_meta_keys(){
+    $domain = 'woocommerce';
+    return array(
+    '_security_deposit' => __('Security Deposit', $domain),
+    '_cleaning_fee' => __('Cleaning Fee', $domain),
+    );
+}
+
+
+// Add custom fields to single product pages
+add_action( 'woocommerce_before_add_to_cart_button', 'booking_valtsw_add_custom_fields_single_product', 20 );
+function booking_valtsw_add_custom_fields_single_product(){
+global $product;
+$feaz = booking_valtsw_product_and_meta_keys();
+?>
+<div class="product-custom-fields">
+<?php foreach($feaz as $key => $value ): ?>
+<input type="text" placeholder="<?php echo $value; ?>" name="<?php echo $key; ?>">
+<?php endforeach; ?>
+</div>
+<div class="clear"></div>
+<?php
+}
+
+// Save custom fields to cart object
+add_filter( 'woocommerce_add_cart_item_data', 'booking_valtsw_save_custom_fields_cart_item_data', 10, 2 );
+function booking_valtsw_save_custom_fields_cart_item_data( $cart_item_data, $product_id ){
+$feaz = booking_valtsw_product_and_meta_keys();
+foreach($feaz as $key => $value ):
+if(isset($_POST[$key]))
+$cart_item_data['custom_data'][$key] = sanitize_text_field($_POST[$key]);
+endforeach;
+
+$cart_item_data['custom_data']['unique_key'] = md5( microtime().rand() );
+WC()->session->set( 'custom_data', $cart_item_data['custom_data'] );
+return $cart_item_data;
+}
+
+// Display custom fields in cart items (cart and checkout pages)
+add_filter( 'woocommerce_get_item_data', 'booking_valtsw_display_custom_fields_cart_item_data', 10, 2 );
+function booking_valtsw_display_custom_fields_cart_item_data($item_data, $cart_item){
+if( ! array_key_exists( 'custom_data', $cart_item ) )
+return $item_data;
+
+$feaz = booking_valtsw_product_and_meta_keys();
+foreach($feaz as $key => $value ):
+if( array_key_exists( $key, $cart_item['custom_data'] ) )
+$item_data[] = array(
+'key' => $value,
+'value' => $cart_item['custom_data'][$key]
+);
+endforeach;
+return $item_data;
+}
+
+// Save and display custom fields in order item meta
+add_action( 'woocommerce_new_order_item', 'booking_valtsw_add_custom_fields_order_item_meta', 20, 3 );
+function booking_valtsw_add_custom_fields_order_item_meta( $item_id, $cart_item, $cart_item_key ) {
+$feaz = booking_valtsw_product_and_meta_keys();
+$cart_custom_data = array( '_security_deposit', '_cleaning_fee');
+foreach($feaz as $key => $meta_key_label ):
+if( array_key_exists($key, $cart_custom_data) )
+wc_update_order_item_meta( $item_id, $meta_key_label, $cart_item['custom_data'][$key] );
+endforeach;
+}
+
+
 /**
  * Add data to WooCommerce data 
  * @since 1.0.1
