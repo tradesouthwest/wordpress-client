@@ -22,7 +22,7 @@ $totals = $order->get_order_item_totals();
 ?>
 
 <form id="order_review" class="listeo-pay-form" method="post">
-
+<tcaption>Vacastays Booking Pay Form</tcaption>
 	<table class="shop_table">
 		<thead>
 			<tr>
@@ -53,6 +53,7 @@ $totals = $order->get_order_item_totals();
 								do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order, false );
 								
 							?>
+								
 							<?php 
 							$booking_id = get_post_meta($order->get_id(),'booking_id',true);
 							if($booking_id){ 
@@ -65,10 +66,10 @@ $totals = $order->get_order_item_totals();
 								$listing_type = get_post_meta($listing_id,'_listing_type', true);
 
 								echo '<div class="inner-booking-list">';
-			if($listing_type == 'rental') { ?>
+			                    if($listing_type == 'rental') { ?>
 									<h5><?php esc_html_e('Dates:', 'listeo'); ?></h5>
 									<?php echo date_i18n(get_option( 'date_format' ), strtotime($booking_data['date_start'])); ?> - <?php echo date_i18n(get_option( 'date_format' ), strtotime($booking_data['date_end'])); ?></li>
-                                    
+                        
 								<?php } else if($listing_type == 'service') { ?>
 										<h5><?php esc_html_e('Dates:', 'listeo'); ?></h5>
 										<?php echo date_i18n(get_option( 'date_format' ), strtotime($booking_data['date_start'])); ?> 
@@ -133,48 +134,38 @@ $totals = $order->get_order_item_totals();
 											</li>
 										</ul>
 									</div>	
-									<?php } ?>
+									<?php } 
 									
-									<?php 	/* ************ added by larry@codeable ************* */ 
-                                    if( function_exists( 'booking_validation_tsw_render_extra_fees' ) ) { ?> 
-                                    <div class="line-item-tsw">
-                                        <?php do_action( 'booking_valtsw_extra_fees_html', $listing_id ); ?>
-                                    </div>
-                                    <?php 
-				    				}  /* ends added by larry */ 
-                                    ?>			<?php 
-							}
+
 							?>
+                				
+                            <?php
+							}
+						    ?>
+						   
 						</td>
 						<td class="product-quantity"><?php echo apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', esc_html( $item->get_quantity() ) ) . '</strong>', $item ); ?></td><?php // @codingStandardsIgnoreLine ?>
 						<td class="product-subtotal"><?php echo wp_kses_post($order->get_formatted_line_subtotal( $item )); ?></td><?php // @codingStandardsIgnoreLine ?>
 					</tr>
-					
+				
 					<?php endforeach; ?>
 					
 			<?php endif; ?>
 			
 		</tbody>
 		<tfoot>
-		
+	
 			<?php if ( $totals ) : ?>
-
-                    <?php /* added by larry@codeable AKA checkout @subpackage form-pay in theme */ 
-						$additional_fees = 0; 
-                        $deposit_value   = get_post_meta($listing_id,"_security_deposit",true);  
-                    	$cleaning_value  = get_post_meta($listing_id,"_cleaning_fee",true); 
-                    	$additional_fees = booking_validation_formatted_price($deposit_value+$cleaning_value); 
-                    if( '' != $additional_fees ) : ?>	
-                    <tr>
-						<th scope="row" colspan="2"><?php echo esc_html('Added Fees'); ?></th><?php // @codingStandardsIgnoreLine ?>
-						<td class="product-total additional-fees"><?php echo esc_html('$'. $additional_fees); ?><?php // @codingStandardsIgnoreLine ?>
-						<input id="_security_deposit" type="hidden" name="_security_deposit" value="<?php echo esc_attr($deposit_value); ?>">
-			            <input id="_cleaning_fee" type="hidden" name="_cleaning_fee" value="<?php echo esc_attr($cleaning_value); ?>"></td>
-					</tr>
-					<?php endif; ?>
-					
-					
+			   	<?php /* ************ added by larry@codeable ************* */ 
+                if( function_exists( 'booking_validation_tsw_display_deposit_data_in_cart' ) ) { ?> 
+                    <div class="inner-booking-list">
+                        <?php do_action( 'tsw_add_deposit_data_to_cart', $listing_id ); ?>
+                    </div>
+                <?php /* ends added by larry */
+                } ?>
+				
 				<?php foreach ( $totals as $total ) : ?>
+				 
 					<tr>
 						<th scope="row" colspan="2"><?php echo wp_kses_post($total['label']); ?></th><?php // @codingStandardsIgnoreLine ?>
 						<td class="product-total"><?php echo $total['value']; ?></td><?php // @codingStandardsIgnoreLine ?>
@@ -184,7 +175,7 @@ $totals = $order->get_order_item_totals();
 			
 		</tfoot>
 	</table>
-
+ 
 	<div id="payment">
 		<?php if ( $order->needs_payment() ) : ?>
 			<ul class="wc_payment_methods payment_methods methods">
@@ -213,4 +204,10 @@ $totals = $order->get_order_item_totals();
 			<?php wp_nonce_field( 'woocommerce-pay', 'woocommerce-pay-nonce' ); ?>
 		</div>
 	</div>
-</form>
+</form><div>
+<?php 
+
+//$orderx = wc_get_order( $order->get_id() );
+//print_r( $orderx );
+ ?>
+</div>
