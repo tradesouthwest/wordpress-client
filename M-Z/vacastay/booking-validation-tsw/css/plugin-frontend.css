@@ -1,0 +1,16 @@
+.tsw-error{
+	display: none;
+	margin-left: 10px;
+}		
+
+.tsw-error_show{
+	color: red;
+	margin-left: 10px;
+}
+.tsw-invalid{
+	border: 2px solid red;
+}
+
+.tsw-valid{
+	color: inherit;
+}

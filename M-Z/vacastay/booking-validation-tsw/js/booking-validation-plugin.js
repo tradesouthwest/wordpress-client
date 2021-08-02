@@ -10,7 +10,7 @@
 	        //$('booking-estimated-cost span').data(price', Number(additional_rental_fees * 1));
 	        console.log('added est prc '+additional_rental_fees);
 	        
-	    });
+	    }); /*
 	   	$('a.booking-confirmation-btn').on('click', function(e){
         		e.preventDefault();
         		var tswchk   = $('input#tsw-agreeto');
@@ -28,9 +28,9 @@
                 tswerror.addClass('tsw-error_show');
                 alert( 'You must agree to additional fees.' );
             }
-	   	});
+	   	}); */
 		     
-    	$('#tsw-agreeto').click(function(){
+    	/*$('#tsw-agreeto').click(function(){
     	    
     	    var chk = $(this);
     	    chk.attr("checked", !chk.attr("checked"));
@@ -64,8 +64,8 @@
                     console.log( "b= " + totalcost + ' ' + totalfees );    
                     reset_cost = 0;
     	    }
-        });
+        }); */
             
         });
      //return false;
-})(jQuery); 
+})(jQuery);

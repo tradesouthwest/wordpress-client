@@ -1,0 +1,4 @@
+/*.cmb2-id--reservation-price label{color:transparent;position:relative;left:0;}
+.cmb2-id--reservation-price label:after{content:"Costs of Deposits";color:#222;position:relative;display:block;top:-1em;}*/
+.notice-warning > .bsf-core-license-form-btn, 
+body.wp-admin div.wrap div.notice.notice-warning p{display:none;}

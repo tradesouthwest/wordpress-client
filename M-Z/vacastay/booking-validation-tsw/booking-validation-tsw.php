@@ -3,7 +3,7 @@
  * Plugin Name:       Booking Validation TSW
  * Plugin URI:        http://themes.tradesouthwest.com/wordpress/plugins/
  * Description:       Set validation for checkout module specific
- * Version:           1.0.0
+ * Version:           1.0.2
  * Author:            Larry Judd
  * Author URI:        https://codeable.io/developers/larry-judd/
  * License:           GPL-2.0+
@@ -53,7 +53,7 @@ register_deactivation_hook( __FILE__, 'booking_validation_tsw_plugin_deactivatio
 
 function booking_validation_tsw_addplugin_scripts() 
 {
-    $ver      = time();
+    $ver      = '1.0.2';
     // Register styles
     wp_enqueue_style( 'booking-validation-front', 
                         plugins_url('css/plugin-frontend.css', __FILE__),
@@ -61,11 +61,7 @@ function booking_validation_tsw_addplugin_scripts()
     // Register Scripts
     wp_register_script( 'booking-update-cart-items', 
 					   plugins_url('js/booking-validation-plugin.js', __FILE__ ), 
-					   array('jquery', 'jquery-cookie'), $ver, false );
-    /* wp_register_script( 'booking-update-cart-cookie', 
-					   plugins_url('js/jquery.cookie.min.js', __FILE__ ), 
-					   array('jquery'), $ver, true );
-    wp_enqueue_script( 'jquery-cookie' ); */
+					   array('jquery'), $ver, false );
     wp_enqueue_script( 'booking-update-cart-items' );
     
      
@@ -92,5 +88,5 @@ include( plugin_dir_path( __FILE__ ) . 'inc/booking-validation-tsw-metadata.php'
 //include( plugin_dir_path( __FILE__ ) . 'admin/booking-validation-tsw-admin.php' ); 
 // initiate hooks
 add_action( 'wp_enqueue_scripts', 'booking_validation_tsw_addplugin_scripts', 99);
-add_action( 'admin_enqueue_scripts', 'booking_validation_tsw_load_admin_scripts' );   
+//add_action( 'admin_enqueue_scripts', 'booking_validation_tsw_load_admin_scripts' );   
 ?>

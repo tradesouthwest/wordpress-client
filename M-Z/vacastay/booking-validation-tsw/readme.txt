@@ -25,7 +25,7 @@ This section describes how to install the plugin and get it working.
 1. Upload `.zip` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to Settings and configure OnList settings.
-
+&gt;?php if ( function_exists('booking_validation_tsw_checkout_html') ) { do_action('booking_validation_after_booking_summary'); } ?&gt;
 == Frequently Asked Questions ==
 
 == Upgrade Notice ==
