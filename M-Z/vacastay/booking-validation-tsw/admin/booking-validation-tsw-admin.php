@@ -46,8 +46,22 @@ function booking_valtsw_register_admin_options()
     ); 
     add_settings_field(
         'booking_valtsw_cutoff',
-        __('Number of hours for refund', 'onlist'),
+        __('Number of hours for refund', 'booking-validation-tsw'),
         'booking_valtsw_cutoff_cb',
+        'booking_valtsw_primary',
+        'booking_valtsw_section'
+    );
+    add_settings_field(
+        'booking_valtsw_cutoff_text',
+        __('Text in front of cutoff', 'booking-validation-tsw'),
+        'booking_valtsw_cutoff_text_cb',
+        'booking_valtsw_primary',
+        'booking_valtsw_section'
+    );
+    add_settings_field(
+        'booking_valtsw_fee_text',
+        __('Text for Additional Fees', 'booking-validation-tsw'),
+        'booking_valtsw_fee_text_cb',
         'booking_valtsw_primary',
         'booking_valtsw_section'
     );
@@ -56,15 +70,36 @@ function booking_valtsw_register_admin_options()
 function booking_valtsw_cutoff_cb()
 {
     $options = get_option('booking_valtsw_field'); 
-    $valtsw_cutoff = $options['booking_valtsw_cutoff']; 
-    if( $valtsw_cutoff == '' ) { $valtsw_cutoff = __( '48', 'booking-valtsw' ); } 
+    $valtsw  = $options['booking_valtsw_cutoff']; 
+    if( $valtsw == '' ) { $valtsw = ''; } 
 ?>
-    <label class="olmin"><?php esc_html_e( 'Set amount of time for refund cutoff', 'booking-valtsw' ); ?></label>
+    <label class="olmin"><?php esc_html_e( 'Set amount of time for refund cutoff', 'booking-validation-tsw' ); ?></label>
     <input type="number" name="booking_valtsw_field[booking_valtsw_cutoff]" 
-           value="<?php echo esc_attr( $valtsw_cutoff ); ?>" 
+           value="<?php echo esc_attr( $valtsw ); ?>" 
+           size="8"/>
+    <?php
+}
+function booking_valtsw_cutoff_text_cb()
+{
+    $options = get_option('booking_valtsw_field'); 
+    $valtsw  = ('' != $options['booking_valtsw_cutoff_text']) ? $options['booking_valtsw_cutoff_text'] : ''; 
+?>
+    <label class="olmin"><?php esc_html_e( 'Set amount of time for refund cutoff', 'booking-validation-tsw' ); ?></label>
+    <input type="text" name="booking_valtsw_field[booking_valtsw_cutoff_text]" 
+           value="<?php echo esc_attr( $valtsw ); ?>" 
            size="35"/>
     <?php
-    
+}
+function booking_valtsw_fee_text_cb()
+{
+    $options    = get_option('booking_valtsw_field'); 
+    $valtsw = ('' != ($options['booking_valtsw_fee_text'])) ? $options['booking_valtsw_fee_text'] : '';
+?>
+    <label class="olmin"><?php esc_html_e( 'Set text for Additional Fees', 'booking-validation-tsw' ); ?></label>
+    <input type="text" name="booking_valtsw_field[booking_valtsw_fee_text]" 
+           value="<?php echo esc_attr( $valtsw ); ?>" 
+           size="35"/>
+    <?php
 }
 
 // section content cb
@@ -75,6 +110,8 @@ function booking_valtsw_section_cb()
     Erase or leave blank to remove field.', 'booking-valtsw' );
     print( '</h4>' ); 
 }
+
+
 
 
 //render admin page
@@ -188,4 +225,4 @@ function booking_validation_tsw_order_item_custom_fields_save( $post_id, $post )
         }
     }
     $order->save();
-}
+} 
