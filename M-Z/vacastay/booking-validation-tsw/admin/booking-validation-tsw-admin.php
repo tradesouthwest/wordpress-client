@@ -3,13 +3,117 @@
  * @since ver: 1.0.0
  * Author:     Tradesouthwest
  * Author      URI: http://tradesouthwest.com
- * @package    sound_absorption_calc
+ * @package    booking validation tsw
  * @subpackage admin/booking-validation-tsw-admin
 */
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+add_action( 'admin_menu', 'booking_valtsw_add_options_page' );  
+    add_action( 'admin_init', 'booking_valtsw_register_admin_options' );
+/**
+ * Add an options page under the Settings submenu
+ * $page_title, $menu_title, $capability, $menu_slug, $function-to-render, $icon_url, $position
+ * @since  1.0.0
+ */
+function booking_valtsw_add_options_page() 
+{
+    add_menu_page(
+        __( 'Booking Validation Settings', 'booking-valtsw' ),
+        __( 'Booking ValTSW', 'onlist' ),
+        'manage_options',
+        'booking-valtsw',
+        'booking_valtsw_options_page',
+        'dashicons-admin-tools',
+        '60'
+    );
+}
+/** register a new sections and fields in the "onlist admin" page
+ * section is primary options callback are _field
+ */
+function booking_valtsw_register_admin_options() 
+{
+    register_setting( 'booking_valtsw_primary', 'booking_valtsw_field' );
+    /**
+ * listings section
+ */        
+    add_settings_section(
+        'booking_valtsw_section',
+        'Booking ValTSW Options',
+        'booking_valtsw_section_cb',
+        'booking_valtsw_primary'
+    ); 
+    add_settings_field(
+        'booking_valtsw_cutoff',
+        __('Number of hours for refund', 'onlist'),
+        'booking_valtsw_cutoff_cb',
+        'booking_valtsw_primary',
+        'booking_valtsw_section'
+    );
+}
+
+function booking_valtsw_cutoff_cb()
+{
+    $options = get_option('booking_valtsw_field'); 
+    $valtsw_cutoff = $options['booking_valtsw_cutoff']; 
+    if( $valtsw_cutoff == '' ) { $valtsw_cutoff = __( '48', 'booking-valtsw' ); } 
+?>
+    <label class="olmin"><?php esc_html_e( 'Set amount of time for refund cutoff', 'booking-valtsw' ); ?></label>
+    <input type="number" name="booking_valtsw_field[booking_valtsw_cutoff]" 
+           value="<?php echo esc_attr( $valtsw_cutoff ); ?>" 
+           size="35"/>
+    <?php
+    
+}
+
+// section content cb
+function booking_valtsw_section_cb()
+{    
+    print( '<h4>' );
+    esc_html_e( 'Modify Field Settings from Here. 
+    Erase or leave blank to remove field.', 'booking-valtsw' );
+    print( '</h4>' ); 
+}
+
+
+//render admin page
+function booking_valtsw_options_page() 
+{
+    // check user capabilities
+    if ( ! current_user_can( 'manage_options' ) ) return;
+    // check if the user have submitted the settings
+    // wordpress will add the "settings-updated" $_GET parameter to the url
+    if ( isset( $_GET['settings-updated'] ) ) {
+    // add settings saved message with the class of "updated"
+    add_settings_error( 'booking_valtsw_messages', 'booking_valtsw_message', 
+                        __( 'Settings Saved', 'booking-valtsw' ), 
+                        'updated' );
+    }
+    // show error/update messages
+    settings_errors( 'booking_valtsw_messages' );
+
+?>
+    <div class="wrap">
+    
+    <h1><div id="icon-options-general" class="icon32"></div>
+    <?php echo esc_html( get_admin_page_title() ); ?></h1>
+    <form action="options.php" method="post">
+    <?php
+     
+        settings_fields( 'booking_valtsw_primary' );
+        do_settings_sections( 'booking_valtsw_primary' ); 
+     
+        submit_button( 'Save Settings' ); ?>
+    </form>
+    
+    </div>
+<?php
+}  
+
+
+
+    
 /**
  * Changing a meta title
  * @param  string        $key  The meta key
@@ -85,4 +189,3 @@ function booking_validation_tsw_order_item_custom_fields_save( $post_id, $post )
     }
     $order->save();
 }
-
