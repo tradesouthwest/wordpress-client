@@ -21,20 +21,25 @@ add_action('booking_validation_tsw_render_listeo_booking_widget','booking_valida
 function booking_validation_tsw_extend_listeo_booking_widget($post_id)
 {
     $post_id = (empty($post_id)) ? get_the_ID() : $post_id;
-    $additional_fees = $deposit_value = $cleaning_value = 0; 
-    $deposit_value   = get_post_meta($post_id, "_security_deposit",true);  
-	$cleaning_value  = get_post_meta($post_id, "_cleaning_fee",true); 
-	$additional_fees = ($deposit_value + $cleaning_value) * 1; 
+    $additional_fees   = $deposit_value = $cleaning_value = 0; 
+    $deposit_value     = get_post_meta($post_id, "_security_deposit",true);  
+	$cleaning_value    = get_post_meta($post_id, "_cleaning_fee",true); 
+	$additional_fees   = ($deposit_value + $cleaning_value) * 1; 
     //$currency_symbol = get_woocommerce_currency_symbol();
-	if( '' != $deposit_value ) : 
+    $cutoff      = get_option('booking_valtsw_field')['booking_valtsw_cutoff']; 
+    $cutoff_text = get_option('booking_valtsw_field')['booking_valtsw_cutoff_text'];
+    $fee_text    = get_option('booking_valtsw_field')['booking_valtsw_fee_text'];
+	if( '' != $deposit_value || $cleaning ) : 
 	ob_start();
 	?>
 
     <div class="booking-additional-cost" style="display: block;margin-top: 15px;margin-bottom: -5px;padding-top: 15px;border-top: 1px solid #e8e8e8;">
-		<strong style="font-weight:600"><?php esc_html_e('Additional Fees','listeo_core'); ?></strong>
+		<p><strong style="font-weight:600"><?php echo esc_html($fee_text); ?></strong>
 		<span data-price="<?php echo esc_attr($additional_fees); ?>" style="text-align: right;float: right;font-weight:600;font-size: 16px;position: relative;">
 		<?php echo esc_html(booking_validation_formatted_price($additional_fees)); ?>
-        </span>
+        </span></p>
+       
+		<small style="color:maroon"><?php echo esc_html($cutoff_text); ?> <?php echo absint( $cutoff ); ?> hours.</small>
         <input id="_cleaning_fee" type="hidden" name="_cleaning_fee" value="<?php echo esc_attr($cleaning_value); ?>">
         <input id="_security_deposit" type="hidden" name="_security_deposit" value="<?php echo esc_attr($deposit_value); ?>">
         <input id="additional_rental_fees" type="hidden" name="additional_rental_fees" value="<?php echo esc_attr($additional_fees); ?>"><?php /* unique_id maybe */ ?>
@@ -133,6 +138,7 @@ function booking_validation_tsw_get_additional_costs_items($post_inf)
 add_action('booking_validation_after_booking_summary','booking_validation_tsw_checkout_html' );
 function booking_validation_tsw_checkout_html($data)
 {
+    global $woocommerce;
     $deposit_value   = get_post_meta($data->listing_id,"_security_deposit",true);  
 	$cleaning_value  = get_post_meta($data->listing_id,"_cleaning_fee",true); 
 	$currency_symbol = get_woocommerce_currency_symbol();
@@ -146,7 +152,7 @@ function booking_validation_tsw_checkout_html($data)
 		</li>';
 	
 	echo '<li id="booking-confirmation-cleaning-fee" style="width: 100%;color: #888;margin: 2px 0;transition: 0.2s;cursor: default;overflow: hidden;">
-			<h5 style="font-weight:600">Cleaning Fee <span style="float: right;font-weight: 400;text-align: right;"> ' .$currency_symbol. '' .$cleaning_value . '</span></h5>
+			<h5 style="font-weight:600">Cleaning Costs <span style="float: right;font-weight: 400;text-align: right;"> ' .$currency_symbol. '' .$cleaning_value . '</span></h5>
 			<input id="_cleaning_fee" type="hidden" name="_cleaning_fee" value="' .$cleaning_value . '">
 		</li>';
 	echo '<li style="visibility:hidden"><input type="hidden" id="totalfees" name="totalfees" value="' . esc_attr($totalfees) . '"></li>';	
@@ -156,10 +162,15 @@ function booking_validation_tsw_checkout_html($data)
 	        
 	$output = ob_get_clean();
 	
+$item_id = wc_add_order_item($data->listing_id, array('order_item_name'	=>	__('Security Deposit', 'listeo-core'), 'order_item_type' => 'line_item'));
+if ($item_id) {
+	 	wc_add_order_item_meta($item_id, '_line_total', $deposit_value);
+}
     	echo $output;
     	else: echo '<li>&nbsp;</li>';
     endif;
 }
+
 
 
 /**
@@ -188,7 +199,7 @@ function booking_validation_tsw_render_extra_fees($listing_id){
     
     <div class="inner-booking-list">'; ?>
         <?php if( '' != $cleaning ) : ?>
-        <?php echo '<h5>' . esc_html__("Cleaning Fee:", "listeo") . '</h5>
+        <?php echo '<h5>' . esc_html__("Cleaning Costs:", "listeo") . '</h5>
     	<ul class="listeo_booked_fees_list">
     	    <li class="line-item">' . esc_html($currency_symbol) . '<span>' . esc_attr($cleaning) . '</span>
     	    <input id="_cleaning_fee" type="hidden" name="_cleaning_fee" value="'. esc_attr($cleaning) .'"></li>
@@ -228,7 +239,7 @@ function booking_validation_tsw_display_deposit_data_in_cart($listing_id) {
 	<?php endif; ?>	
 	<?php if( '' != $cleaning_value ) : ?>
 		<tr>
-			<th scope="row" colspan="2"><?php echo esc_html('Cleaning Fee'); ?></th><?php // @codingStandardsIgnoreLine ?>
+			<th scope="row" colspan="2"><?php echo esc_html('Cleaning Costs'); ?></th><?php // @codingStandardsIgnoreLine ?>
 			<td class="additional-fees"><?php echo booking_validation_formatted_price($cleaning_value); ?><?php // @codingStandardsIgnoreLine ?>
 		    <input id="_cleaning_fee" type="hidden" name="_cleaning_fee" value="<?php echo esc_attr($cleaning_value); ?>"></td>
 		</tr>

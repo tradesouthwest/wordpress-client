@@ -11,6 +11,57 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function booking_valtsw_get_author_meta_email()
+{
+    global $post;
+    $author_id = $owner_email = '';
+    
+    $author_id = 3;
+    
+    if($author_id) {
+        $owner_email = get_the_author_meta( 'user_email', $author_id );
+    } else {
+        $owner_email = 'admin@vacastays.com';
+    }
+        return esc_attr($owner_email);
+}
+add_action( 'woocommerce_after_order_itemmeta', 'booking_valtsw_custom_meta_customized_display',10, 3 );
+
+function booking_valtsw_custom_meta_customized_display( $item_id, $item, $product ){
+
+    global $post;
+    $adata = $bdata = '1';
+    $pid   = '';
+    $adata = get_post_meta( $pid, '_security_deposit', true);
+    $bdata = get_post_meta( $pid, '_cleaning_fee', true);
+    $pid   = booking_valtsw_get_product_id($post->ID);
+    if('' != $adata)
+	{
+	    $html_string = '<span>';
+		$html_string .= '<strong style="color:#777;font-weight:600">'. __('Security Deposit') . ':</strong> $' . esc_attr($adata) . ' </span> ';
+		
+	        echo $html_string;			
+	}
+	if('' != $bdata )
+	{
+	    $htm_string = ' | <span> ';
+	    $htm_string .= '<strong style="color:#777;font-weight:600">'. __('Cleaning Costs') . ':</strong> $' . esc_attr($bdata) . '</span>';
+		
+	        echo $htm_string;			
+	}
+	
+	
+
+}
+function booking_valtsw_get_product_id($post)
+{
+    global $post;
+    
+    $order = wc_get_order($post);
+    $order_id = $order->get_id();
+    
+        return absint($order_id - 3);
+}
 /**
  * Add data to WooCommerce data 
  * @since 1.0.1
@@ -27,7 +78,7 @@ function booking_valtsw_custom_checkout_field($checkout='') {
         array(
         'type'        => 'text',
         'class'       => array('tsw-field-class form-row-wide'),
-        'label'       => __('Security Deposit and Cleaning Fee'),
+        'label'       => __('Security Deposit and Cleaning Cost'),
         'placeholder' => __('if apply'),
         'required'	  => false,
         ));
@@ -50,7 +101,7 @@ function booking_valtsw_product_and_meta_keys(){
     $domain = 'woocommerce';
     return array(
     '_security_deposit' => __('Security Deposit', $domain),
-    '_cleaning_fee' => __('Cleaning Fee', $domain),
+    '_cleaning_fee' => __('Cleaning Costs', $domain),
     );
 }
 

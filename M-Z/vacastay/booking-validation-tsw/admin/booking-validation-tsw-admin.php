@@ -10,6 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 add_action( 'admin_menu', 'booking_valtsw_add_options_page' );  
     add_action( 'admin_init', 'booking_valtsw_register_admin_options' );
 /**
@@ -225,4 +226,5 @@ function booking_validation_tsw_order_item_custom_fields_save( $post_id, $post )
         }
     }
     $order->save();
-} 
+}
+

@@ -85,7 +85,7 @@ function booking_validation_tsw_load_admin_scripts()
 
 include( plugin_dir_path( __FILE__ ) . 'inc/booking-validation-tsw-public.php' ); 
 include( plugin_dir_path( __FILE__ ) . 'inc/booking-validation-tsw-metadata.php' ); 
-//include( plugin_dir_path( __FILE__ ) . 'admin/booking-validation-tsw-admin.php' ); 
+include( plugin_dir_path( __FILE__ ) . 'admin/booking-validation-tsw-admin.php' ); 
 // initiate hooks
 add_action( 'wp_enqueue_scripts', 'booking_validation_tsw_addplugin_scripts', 99);
 //add_action( 'admin_enqueue_scripts', 'booking_validation_tsw_load_admin_scripts' );   
