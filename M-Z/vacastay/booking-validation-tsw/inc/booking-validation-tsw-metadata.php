@@ -10,21 +10,44 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-function booking_valtsw_get_author_meta_email()
+/**
+ * Retrieve author email from order meta from product id
+ * @see https://www.webroomtech.com/woocommerce-add-product-id-in-order-received-url/
+ */ 
+function booking_valtsw_get_author_meta_email($order)
 {
-    global $post;
-    $author_id = $owner_email = '';
+    global $post, $product;
+    $author_email = $owner_email = $prod_id = '';
     
-    $author_id = 3;
+    //create empty array to store url parameters in 
+    $sku_list = array();
+
+    // retrive products in order 
+    foreach($order->get_items() as $key => $item){
+		$product = wc_get_product($item['product_id']);
+		//get sku of each product and insert it in array 
+		
+		$sku_list['product_id_'.$item['product_id']] = $product->get_id();
+    }
+	
+    $prod_id      = ('' != $product->get_id() ) ? absint($product->get_id() - 1 ) : '512';
+    $post_obj   = get_post( $prod_id );
+    $author_id    = $post_obj->post_author;
+    $author_email = get_the_author_meta( 'user_email', $author_id );
     
-    if($author_id) {
-        $owner_email = get_the_author_meta( 'user_email', $author_id );
+    if('' != $author_email) {
+        $owner_email = $author_email;
     } else {
         $owner_email = 'admin@vacastays.com';
     }
-        return esc_attr($owner_email);
+        ob_start();
+
+    echo '<h4>Send email to owner</h4>
+    <p>Email: <a href="mailto:'. esc_attr( $owner_email ) .'" title="email owner">'. esc_html( $owner_email ) .'</a></p>';
+        $htm = ob_get_clean();
+        echo $htm;
 }
+
 add_action( 'woocommerce_after_order_itemmeta', 'booking_valtsw_custom_meta_customized_display',10, 3 );
 
 function booking_valtsw_custom_meta_customized_display( $item_id, $item, $product ){
