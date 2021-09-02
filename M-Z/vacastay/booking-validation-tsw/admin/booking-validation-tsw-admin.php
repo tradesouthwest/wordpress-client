@@ -45,6 +45,13 @@ function booking_valtsw_register_admin_options()
         'booking_valtsw_section_cb',
         'booking_valtsw_primary'
     ); 
+     add_settings_field(
+        'booking_valtsw_cutoff_text',
+        __('Text in front of cutoff', 'booking-validation-tsw'),
+        'booking_valtsw_cutoff_text_cb',
+        'booking_valtsw_primary',
+        'booking_valtsw_section'
+    );
     add_settings_field(
         'booking_valtsw_cutoff',
         __('Number of hours for refund', 'booking-validation-tsw'),
@@ -53,12 +60,13 @@ function booking_valtsw_register_admin_options()
         'booking_valtsw_section'
     );
     add_settings_field(
-        'booking_valtsw_cutoff_text',
-        __('Text in front of cutoff', 'booking-validation-tsw'),
-        'booking_valtsw_cutoff_text_cb',
+        'booking_valtsw_cutoff_increment',
+        __('Hours, Days...', 'booking-validation-tsw'),
+        'booking_valtsw_cutoff_increment_cb',
         'booking_valtsw_primary',
         'booking_valtsw_section'
     );
+   
     add_settings_field(
         'booking_valtsw_fee_text',
         __('Text for Additional Fees', 'booking-validation-tsw'),
@@ -76,6 +84,17 @@ function booking_valtsw_cutoff_cb()
 ?>
     <label class="olmin"><?php esc_html_e( 'Set amount of time for refund cutoff', 'booking-validation-tsw' ); ?></label>
     <input type="number" name="booking_valtsw_field[booking_valtsw_cutoff]" 
+           value="<?php echo esc_attr( $valtsw ); ?>" 
+           size="8"/>
+    <?php
+}
+function booking_valtsw_cutoff_increment_cb()
+{
+    $options = get_option('booking_valtsw_field'); 
+    $valtsw  = ('' != $options['booking_valtsw_cutoff_increment']) ? $options['booking_valtsw_cutoff_increment'] : ''; 
+?>
+    <label class="olmin"><?php esc_html_e( 'Set Hours Day etc.', 'booking-validation-tsw' ); ?></label>
+    <input type="text" name="booking_valtsw_field[booking_valtsw_cutoff_increment]" 
            value="<?php echo esc_attr( $valtsw ); ?>" 
            size="8"/>
     <?php
@@ -227,4 +246,3 @@ function booking_validation_tsw_order_item_custom_fields_save( $post_id, $post )
     }
     $order->save();
 }
-
