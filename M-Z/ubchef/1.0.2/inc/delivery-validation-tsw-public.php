@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function delivery_validation_tsw_footer_scripts() 
 {
 if( is_checkout() ) return; 
+
 ob_start();    
 ?><script type="text/javascript" id="delivery-validation-tsw-footer">
 jQuery( document ).ready(function($) {
@@ -78,12 +79,21 @@ function delivery_validation_tsw_checkout_html()
     $p_id = $field = $is_match = $next_day = $dayb = '';
     $p_id     = delivery_validation_tsw_parse_validation_to_cart_items();
 	$field    = get_post_meta( $p_id, 'delivery_validation_tsw', true);
-	
+	/* deprecated 
 	$pattern  = '/([0-9])+/';  
 	$is_match = preg_match($pattern, $field, $dates);
 	$next_day = absint($dates[0]) + 1;
 	$dayb     = $next_day . '/'.date("m").'/'.date("Y"); 
-    $show     = 'table';
+    $show     = 'table'; */
+	$pattern  = '/([0-9])+/';  
+	$is_match = preg_match($pattern, $field, $match);
+	$next_day = $match[0] + 1; $same_day = $match[0] + 0;
+	$field_splt = preg_split("/[\/,]+/", $field);
+	$dayb     = sprintf("%02d", $next_day ) . '/'. $field_splt[1] . '/'. $field_splt[2]; 
+	// christmas product menu exception for one day
+	if (is_product('10712') || is_product('10693') ) { 
+		$dayb = sprintf("%02d", $same_day ) . '/'. $field_splt[1] . '/'. $field_splt[2]; 
+	}
 	if( '' != $field ) : 
 	ob_start();
     echo '<table class="delval-notices" style="line-height:1;padding:0;position:relative;bottom:-6.65em;width:100%;display:' . $show . ';">
@@ -151,20 +161,64 @@ function delivery_validation_tsw_parse_validation_to_cart_items()
 }
 
 /**
- * For debug only
+ * For christmas courses only
  */
-//add_action('wp_footer', 'delivery_validation_tsw_meta_html');
-function delivery_validation_tsw_meta_html(){
-
-echo '<div style="display:block;width:100%;height:100%;overflow:auto;">Info: ';
-$meta_keys = get_post_meta( get_the_ID() );
-
-foreach( $meta_keys as $meta => $value ) : 
-    if( ( '_' != $meta[0] ) && ( '' != $meta ) ) : 
-        echo '<span><strong>' . $meta . ':</strong> 
-		echo ' . $value[0] . '</span>';
-    endif;
-endforeach; 
- 
-echo '</div>';
+add_filter( 'woocommerce_add_to_cart_validation', 
+			'delvaltsw_add_to_cart_validationxm', 10, 5 );
+function delvaltsw_add_to_cart_validationxm( $passed, $product_id, $quantity, 
+				$variation_id, $variations  )
+{ 
+	global $product;
+	if( !is_product('10693') ) return; 
+	$passed = false;
+	$product = wc_get_product( $product_id );
+    $variations = $product->get_available_variations();
+	if($variations ){
+	$passed = true;
+	}
+	$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', 
+										$passed, $product_id, $quantity, 
+										$variation_id, $variations 
+										);
+	return $passed_validation;
+    
 }
+add_action('wp_footer', 'delivery_validation_tsw_christmas_courses');
+function delivery_validation_tsw_christmas_courses() 
+{
+	if( !is_product('10693') ) return;
+
+	ob_start(); 
+
+	?><script id="christmasCourse" type="text/javascript">
+	(function( $ ) {
+    "use strict";
+ 		$(document).ready( function(){
+
+			$("form.variations_form.cart select").change(function (e) {
+			
+				var optsel = $(this).children("option:selected").val();
+				
+				var starter = $("#starter-two-courses").val();
+				var mainc   = $("#main-course-two-courses").val();
+				var dessert = $("#dessert-two-courses").val();
+
+				if ( ( mainc && starter ) && dessert ) {
+				e.preventDefault();
+					alert( "Only Two courses per order. Please click the Clear button below and select again. Thanks." );
+					return false;
+				} else {
+				e.preventDefault();
+					console.log("OK4 " + optsel);
+					
+				}
+			
+			});	
+    	}); 
+	})(jQuery); </script><style id="suppXm">.thb-product-detail .variations_form .reset_variations{
+	padding-top: 4px;padding-bottom: 4px;font-size: 1em;color: red;line-height: .2;}</style>
+	
+	<?php $jsxm = ob_get_clean();
+	
+		echo $jsxm;
+} 
