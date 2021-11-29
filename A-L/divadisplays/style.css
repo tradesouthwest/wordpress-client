@@ -1,0 +1,189 @@
+/*
+Theme Name: Porto Child
+Theme URI: https://www.portotheme.com/wordpress/porto
+Author: P-THEMES
+Author URI: https://www.portotheme.com/
+Description: Porto Responsive WordPress + eCommerce Theme.
+Version: 1.1
+Template: porto
+License: Commercial
+License URI: http://themeforest.net/licenses/regular_extended
+Tags: woocommerce, 
+*/
+/* ljudd */
+.wcuf_upload_field_title:after{content: "Upload an initial file, Once you have an ORDER NUMBER you can upload others.";
+	font-weight:lighter;
+	font-size: smaller;
+	font-style:italic;
+	position:relative;
+	display:block;
+}
+.main-menu-wrap {
+    background-color: #fafafa;
+	border-bottom: 1px solid #e2e2e2;
+}
+
+#header .main-menu > li.menu-item,
+#header .main-menu > li.menu-item > a {
+	font-size: 14px;
+	font-weight: normal;
+}
+
+#header .main-menu > li.menu-item {
+	margin: 0 35px 0 0;
+}
+
+#header .header-main {
+	background: rgba(89, 210, 248, .38);
+}
+
+#header .header-main .header-left {
+    padding: 14px 0;
+}
+#header .header-right{
+	text-align:left;
+}
+.header-top {
+	background-color: #0188cc;
+}
+
+.header-top .header-contact a, .header-top .custom-html a:not(.btn), #header .header-top .top-links > li.menu-item > a, .header-top .welcome-msg a {
+	color: #fff;
+	font-size: 1.2em;
+}
+#header .top-links .narrow li.menu-item > a, #header .main-menu .wide li.sub li.menu-item > a, .side-nav-wrap .sidebar-menu .wide li.menu-item li.menu-item > a, .sidebar-menu .wide li.sub li.menu-item > a, .sidebar-menu .narrow li.menu-item > a, .porto-popup-menu .sub-menu a {
+    color: #2d2d2d;
+}
+.side-menu-columns .wide .popup, .side-menu-columns .narrow ul.sub-menu, .side-menu-columns .narrow .popup{
+	box-shadow: 4px 4px 5px 3px rgba(0,0,0, .12);
+}
+.woocommerce-page.archive .sidebar-content {
+	border-color: transparent;
+	border: none;
+}
+
+.woocommerce-page.archive .sidebar-content .widget-title {
+	padding: .82rem;
+}
+
+.mega-menu > li.menu-item > a, .mega-menu .wide li.sub > a, .header-side .sidebar-menu > li.menu-item > a, .main-sidebar-menu .sidebar-menu > li.menu-item > a, .main-sidebar-menu .sidebar-menu .menu-custom-item a, .sidebar-menu .wide li.sub > a, .porto-view-switcher .narrow li.menu-item > a, .page-top ul.breadcrumb > li {
+	text-transform: capitalize;
+}
+
+.widget_sidebar_menu {
+	border: none;
+}
+
+.header-top .header-contact a, .header-top .custom-html a:not(.btn), #header .header-top .top-links > li.menu-item > a, .header-top .welcome-msg a {
+	color: #f0f0f0;
+}
+
+#header .main-menu > li.menu-item > a,#header .porto-view-switcher > li.menu-item > a, #header .top-links > li.menu-item > a {
+	font-size: 14px;
+	color: #234;
+}
+
+#header .logo-transition img {
+	transform: scale(1.2);
+}
+
+#header .main-menu .narrow li.menu-item > a, .mega-menu .narrow li.menu-item > a {
+    color: initial;
+    font-weight: normal;
+    letter-spacing: .68px;
+}
+
+.mega-menu .narrow ul.sub-menu{
+	box-shadow: -5px 5px 15px rgba(0,0,0,0.24);
+}
+
+ul.icons-medium li {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.term-description{
+	padding: 15px 30px 0px;
+	background: #fffaea;
+	border: thin solid #eee;
+	font-weight: bolder;
+	color: #234;
+	display: block;
+	margin: 15px auto;
+}
+#block-widget-11 {
+	display: none;
+}
+
+.limh-500 {
+	height: 520px;
+}
+
+#block-10 {
+	border: thin solid #dedede;
+	padding: 15px;
+}
+
+.epm-sign-up-form input {
+	margin: 10px 0;
+	width: 85%;
+}
+
+.limw-50 {
+	width: 85%;
+	margin-left: 8%;
+}
+
+.wp-block-cover p:not(.has-text-color).colr-second {
+	color: sandybrown;
+	font-weight: 700;
+}
+
+.porto-block-html-top {
+	display: none;
+}
+ul.pcols-md-3 li.product-col .product-image .inner{
+	
+	overflow: clip;
+}
+
+.single-product .variations .label label,
+div.product-inner div.product-content span.category-list{
+	display:none;
+}
+.slider-wrapper .owl-carousel .owl-item img{
+	height: 333px;
+}
+#footer, #footer p, #footer .widget > div > ul li, #footer .widget > ul li,
+#footer h1, #footer h2, #footer h3, #footer h4, #footer h5, #footer h6, #footer .widget-title, #footer .widgettitle, #footer a:not(.btn), #footer .tooltip-icon {
+	color: #f8f8f8;
+}
+
+#footer{
+	background-color: #525559;
+}
+#mini-cart .minicart-icon::before {
+    margin: 0 0 0 -30px;
+    color: #222;
+}
+.side-nav-wrap .sidebar-menu > li.menu-item > a, .main-sidebar-menu .sidebar-menu > li.menu-item > a, .side-nav-wrap .sidebar-menu .menu-custom-block span, .main-sidebar-menu .sidebar-menu .menu-custom-block span, .side-nav-wrap .sidebar-menu .menu-custom-block a, .main-sidebar-menu .sidebar-menu .menu-custom-block a{
+	font-weight: initial;
+	color: #234;
+}
+
+.main-sidebar-menu .sidebar-menu > li.menu-item > a.current, .sidebar-menu > li.menu-item:hover > a{
+	color: #fff;
+	font-weight: 600;
+}
+
+.mrgt-md{
+	margin-bottom:30px;
+}
+.gridlist-toggle{display:none;}
+
+
+.product-image img{
+height: 333px;
+	margin: 0 auto;
+	width: 67%;
+} 
