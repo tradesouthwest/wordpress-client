@@ -1,0 +1,24 @@
+[class^="hrds-"] {
+box-sizing: border-box;
+} 
+.hrds-clearfix:before,
+.hrds-clearfix:after {
+content: " ";
+clear: both;
+}
+.hrds-clearfix:after {
+display: table;
+width: 100%;
+height: 1px;
+padding: 15px 0;
+}
+.edit-php.post-type-promocoder table.wp-list-table tbody#the-list td{
+    padding: 6px;
+    line-height: 1;
+}  
+.edit-php.post-type-promocoder table.wp-list-table tbody#the-list tr th.check-column {
+    padding: 6px 0 0 3px;
+}
+.promocoder_wrap tr:nth-of-type(2n){
+    background: #fbfbfb;
+}
