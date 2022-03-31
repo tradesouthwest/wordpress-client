@@ -48,12 +48,13 @@ function coupon_editor_shortcode_render(  $atts = [], $content = null, $tag = ''
      // start box
     $o = 
 	'<div id="couponBox">
-		<div class="coupon-container" style="border: 4px dashed #5a5a5a;width:288px;">
+		<div class="coupon-container" style="border: 4px dashed #b22;width:310px;background:#f1f1f1;">
 			<div class="coupon-box" style="padding-left:0px;padding-right:0px;min-height:148px;margin: 3px;">';
 
     $o .= 
 		    '<div class="coupon-header" style="">
-			   <p class="coupon-title" style="text-align:center;font-size:larger;color:#777;"><strong>' . esc_html__( $coed_atts['title'], 'coupon-editor' ) . '</strong></p></div>
+			   <p class="coupon-title" style="text-align:center;font-size:larger;color: #fff;margin-bottom: 0;padding-bottom: 10px;padding-top: 7px;">
+			   <strong>' . esc_html__( $coed_atts['title'], 'coupon-editor' ) . '</strong></p></div>
 				<div class="coupon-content" style="text-align:center;">';
       
     if ( ! is_null( $content ) ) {
@@ -69,7 +70,7 @@ function coupon_editor_shortcode_render(  $atts = [], $content = null, $tag = ''
 			</div>
 		</div>
 		<div class="coupon-print" style="text-align:center;">
-			<span class="hidden-print"><input style="background:red;color:white;" type="button" value="print coupon" onclick="printDiv();"></p></span>
+			<span class="hidden-print"><input style="text-transform:uppercase;background:red;color:white;padding: 6px 10px;border-radius: 5px;margin: .5em auto;font-weight:600;border:1px solid #c00;" type="button" value="print coupon" onclick="printDiv();"></p></span>
 		</div>
 	
 	</div>
