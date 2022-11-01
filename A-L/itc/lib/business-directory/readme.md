@@ -2,8 +2,8 @@
 
 == added to functions .php of child ==
 
-
-/* =Functions added by Larry @codeable 
+```
+/* Functions added by Larry @codeable 
 -------------------------------------- 
  These function will run independantly from TSW Views Addon plugin which handles
  all the customized aspects of the wpbdp plugin. If above plugin is not installed you
@@ -91,4 +91,4 @@ function itctheme_contact_form_extra_fields(){
     <small>Opens in new window/tab</small><p>
 		</div>
 	</div>';
-}
+} ```
