@@ -1,0 +1,163 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ViewsAddon\n"
+"POT-Creation-Date: 2022-09-30 10:50-0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Tradesouthwest\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e;_n;"
+"_x\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: inc/views-addon-functions.php:59
+msgid "Authorize Judge to this Play"
+msgstr ""
+
+#: inc/views-addon-functions.php:78
+msgid "Authorize Play Invite"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:21
+msgid "TSW Addon Options"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:22
+msgid "TSW Views Addon"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:53
+msgid "Reserved Text"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:64
+msgid "Text Below Title of a Restricted Listing"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:65
+msgid "The text to display just below title of a reserved assigned listing."
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:70
+msgid "Request Text"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:81
+msgid "Info above Request form"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:82
+msgid "Try: To view the files and attachments, please fill out form below"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:87
+msgid "Link Out"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:98
+msgid "Request Page URL. Page that contains shortcode &#91;request_link]"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:99
+msgid ""
+"This would be the full url for the page containing the request shortcode. "
+"copy/paste from address bar"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:104
+msgid "Email to Send Requests To"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:115
+msgid "Enter eMail of user with Admin or Editor role."
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:116
+msgid ""
+"This would be the email you want to recieve all Request Form entries to. "
+"Multiple emails must be separated by a comma. Leave blank to send to site "
+"Admin only."
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:260
+msgid "TSW views-addon"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:261
+msgid ""
+"This plugin requires the following plugins to be installed: \n"
+"    Business Directory Plugin By Business Directory Team. --- Instructions "
+"below settings"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:285
+msgid "Instructions"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:287
+msgid "Views available to listings:"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:288
+msgid ""
+"If current user is <strong>logged in</strong> and they are <em>the</em> "
+"Assigned Judge then they see everything in that assigned listing."
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:289
+msgid ""
+"If current user is logged in <strong>and they are NOT</strong> the Assigned "
+"Judge then they see a blank page with only the title and the tags (so they "
+"have the opportunity to search for another similar play that is not taken.)"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:290
+msgid ""
+"If any listing <strong>is assigned</strong> to a judge, contents will never "
+"be seen by public. (No one see attachments/scripts without being assigned "
+"to play)"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:294
+msgid "General Flow Overview:"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:295
+msgid ""
+"1. Judge requests play via form at bottom of play listing using Form from"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:296
+msgid ""
+"2. Admin recieves email of request and clicks on encapsulated link to "
+"authorize request."
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:297
+msgid ""
+"3. Authorization can lock play from public view by assigning requesting-"
+"judge to Listing in the Publish Submit metabox."
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:300
+msgid "Plugin author: Larry Judd via Codeable.io"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:304
+msgid "Tips"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:305
+msgid "To validate your work visit"
+msgstr ""
+
+#: inc/views-addon-theme-admin.php:307 inc/views-addon-theme-admin.php:308
+msgid "css-validator.org"
+msgstr ""
