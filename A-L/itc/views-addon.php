@@ -34,7 +34,7 @@ if( !defined( 'VIEWS_ADDON_URL' )) { define( 'VIEWS_ADDON_URL',
   
 /**
  * Activate/deactivate hooks
- * 
+ * @TODO need to add check for WPBDP!
  */
 function views_addon_plugin_activation() 
 {
