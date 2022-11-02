@@ -1,7 +1,7 @@
 = Child theme files =
 
 == added to functions .php of child ==
-Helpful links ['https://businessdirectoryplugin.com/knowledge-base/general-customization-guide/'](WPBDP docs)
+Helpful links [WPBDP docs](https://businessdirectoryplugin.com/knowledge-base/general-customization-guide/)
 
 ```
 /* Functions added by Larry @codeable 
