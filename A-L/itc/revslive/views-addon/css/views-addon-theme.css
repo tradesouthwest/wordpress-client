@@ -1,0 +1,43 @@
+.viewaddon-table{text-align:left;table-layout:fixed;width:100%}
+.viewsaddon-restricted .wpbdp-listing,
+.viewsaddon-restrcited .wpbdp-listing-attachments,
+.viewsaddon-restricted .wpbdp-listing-contact-form{
+	display: none;
+}
+.assigned-tojudge .wpbdp-listing-attachments{
+	visibility: visible;
+}
+.viewsaddon-restricted .wpbdp-listing-attachments.field-value{
+  visibility:hidden;
+	display: none!important;
+}
+.unassigned-judge .wpbdp-listing-attachments.field-value{
+	visibility: hidden;
+	display: none;
+}
+.viewsaddon-restricted h1.entry-title:after{
+content: " *Reserved Listing!";
+position: relative;
+display:block;
+}
+.archive .entry-title a,
+.archive .more-link-wrap a,
+.viewsaddon-restricted-frompublic .wpbdp-listing{
+
+	visibility: hidden;
+	opacity: 0;
+}
+.viewsaddon-restricted-toprivate .archive .entry-title a:focus{
+	opacity: 1;
+}
+
+.viewsaddon-restricted-frompublic .entry-header:after{
+
+content:"Please login or register to view plays";
+display: block;
+color: #be9d36;
+}
+
+.viewsaddon-wrapper:not([id^="not_assigned-"]){
+display:none;
+}
