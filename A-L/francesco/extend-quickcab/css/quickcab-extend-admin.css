@@ -1,0 +1,7 @@
+#clcuA,
+.wc-order-data-row.wc-order-totals-items{display: none;}
+/* #order_line_items .quantity, */
+#order_line_items .item_cost,
+#order_line_items .line_cost{
+    opacity: .3
+}
