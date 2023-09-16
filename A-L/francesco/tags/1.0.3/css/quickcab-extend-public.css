@@ -1,0 +1,23 @@
+#clcuA{display: none;}
+#cancel_message{border:none; width:100%;
+    height: 4em;
+    color: maroon;
+    white-space: pre-line;
+    word-wrap: normal;
+    overflow: visible;
+    padding: 0;
+    font-size: smaller;
+} 
+.woocommerce-checkout #billing_state,
+.woocommerce-checkout #billing_state:hover,
+.woocommerce-checkout #billing_state:focus,
+.woocommerce-checkout #billing_state span,
+#billing_state_field .select2-selection{
+pointer-events: none;
+	cursor: not-allowed; 
+    outline: none;
+
+} 
+.maybe-disabling{
+    background-color: #fa9966;
+}
