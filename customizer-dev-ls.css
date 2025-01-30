@@ -61,6 +61,9 @@ body p a {
   text-shadow: 1px 3px 6px #333;
 }
 @media all and (max-width: 412px) {
+  .menu_slide.mt_menu.sticky_header{
+		top: 46px !important;
+  }
   .single .product {
     display: block;
     margin: 0 0 0 0.45em;
