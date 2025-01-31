@@ -48,6 +48,7 @@ body p a {
 .woocommerce-page #content div.product p.stock {
   font-size: 1em;
 }
+
 /* Added by LarryJudd */
 #pp-login-1 > div.pp-form-submit-button-wrap > input {
   top: -5px;
@@ -62,7 +63,7 @@ body p a {
 }
 @media all and (max-width: 412px) {
   .menu_slide.mt_menu.sticky_header{
-		top: 46px !important;
+		top: 71px !important;
   }
   .single .product {
     display: block;
@@ -102,5 +103,14 @@ body p a {
   }
   #rev_slider_11_1_forcefullwidth {
     margin-left: 32px;
+  }
+}
+
+@media all and (max-width: 319px) {
+	.menu_slide.mt_menu.sticky_header{
+		top: 75px !important;
+  }
+	  #logo_img .mobile_logo {
+    margin-left: 0;
   }
 }
