@@ -62,19 +62,22 @@ body p a {font-weight: 700;}
 	
 }
 @media all and (max-width: 412px) {
-	.mt_menu.header_current_cart{
-		position: relative;
-		top: -3em
-	}
-	  #logo_img .mobile_logo {
+  .mt_menu.header_current_cart{
+	position: relative;
+	top: -3em
+  }
+  #logo_img .mobile_logo {
     margin-left: 0;
   } 
-	#logo_img a img.mobile_logo {
-		transform: scale(.75);
+  #logo_img a img.mobile_logo {
+	transform: scale(.75);
         position: relative;
         left: 0;
-	}
-	.home .rs-layer-wrap {
-		left:71px;
-	}
+  }
+  .home .rs-layer-wrap {
+	left:71px;
+  }
+  .post-type-archive-product  .products.columns-3 {
+	margin-left: -2em;
+  }
 }
