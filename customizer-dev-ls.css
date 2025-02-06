@@ -1,54 +1,44 @@
-.woocommerce .woocommerce-tabs.wc-tabs-wrapper ul.wc-tabs,
-.woocommerce div.product .woocommerce-tabs ul.tabs {
-  width: unset;
+.woocommerce .woocommerce-tabs.wc-tabs-wrapper ul.wc-tabs, .woocommerce div.product .woocommerce-tabs ul.tabs {
+    width: unset;
 }
-body p a {
-  font-weight: 700;
-}
+body p a {font-weight: 700;}
 
-.woocommerce span.wc-memberships-member-discount {
-  background: #8c1c13;
-  display: inline-flex;
-  border: 5px solid #8c1c13;
-  align-items: center;
-  line-height: normal;
-  text-transform: none;
-  overflow: visible;
-  white-space: normal;
-  width: 60px;
-  height: 60px;
+.woocommerce span.wc-memberships-member-discount  {
+	background: #8C1C13;
+	display: inline-flex;
+	border: 5px solid #8C1C13;
+	align-items: center;
+	line-height: normal;
+	text-transform: none;
+	overflow: visible;
+	white-space: normal;
+	width: 60px;
+	height: 60px;
 }
 
 .smallmedium_rd_bt {
-  font-size: 16px;
-  text-align: center;
-  min-width: 160px;
-  max-width: 100%;
-  padding: 15px 20px 16px;
-  display: inline-flex;
-  vertical-align: top;
-  max-height: 100px;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: center;
-  align-items: center;
-  flex-direction: column;
+    font-size: 16px;
+    text-align: center;
+    min-width: 160px;
+    max-width: 100%;
+    padding: 15px 20px 16px;
+    display: inline-flex;
+    vertical-align: top;
+    max-height: 100px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.woocommerce div.product .stock,
-.woocommerce #content div.product .stock,
-.woocommerce-page div.product .stock,
-.woocommerce-page #content div.product .stock {
-  color: #ff0000;
+.woocommerce div.product .stock, .woocommerce #content div.product .stock, .woocommerce-page div.product .stock, .woocommerce-page #content div.product .stock {
+    color: #FF0000;
 }
 
-.woocommerce div.product p.stock,
-.woocommerce #content div.product p.stock,
-.woocommerce-page div.product p.stock,
-.woocommerce-page #content div.product p.stock {
-  font-size: 1em;
+.woocommerce div.product p.stock, .woocommerce #content div.product p.stock, .woocommerce-page div.product p.stock, .woocommerce-page #content div.product p.stock {
+    font-size: 1em;
 }
-
 /* Added by LarryJudd */
 #pp-login-1 > div.pp-form-submit-button-wrap > input {
   top: -5px;
@@ -87,12 +77,4 @@ body p a {
 	.home .rs-layer-wrap {
 		left:71px;
 	}
-}
-@media all and (max-width: 319px) {
-	.menu_slide.mt_menu.sticky_header{
-		top: 75px !important;
-  }
-	  #logo_img .mobile_logo {
-    margin-left: 0;
-  }
 }
