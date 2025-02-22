@@ -1,0 +1,167 @@
+.woocommerce .woocommerce-tabs.wc-tabs-wrapper ul.wc-tabs, .woocommerce div.product .woocommerce-tabs ul.tabs {
+    width: unset;
+}
+body p a {font-weight: 700;}
+
+.woocommerce span.wc-memberships-member-discount  {
+	background: #8C1C13;
+	display: inline-flex;
+	border: 5px solid #8C1C13;
+	align-items: center;
+	line-height: normal;
+	text-transform: none;
+	overflow: visible;
+	white-space: normal;
+	width: 60px;
+	height: 60px;
+}
+
+.smallmedium_rd_bt {
+    font-size: 16px;
+    text-align: center;
+    min-width: 160px;
+    max-width: 100%;
+    padding: 15px 20px 16px;
+    display: inline-flex;
+    vertical-align: top;
+    max-height: 100px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.woocommerce div.product .stock, .woocommerce #content div.product .stock, .woocommerce-page div.product .stock, .woocommerce-page #content div.product .stock {
+    color: #FF0000;
+}
+
+.woocommerce div.product p.stock, .woocommerce #content div.product p.stock, .woocommerce-page div.product p.stock, .woocommerce-page #content div.product p.stock {
+    font-size: 1em;
+}
+.woocommerce .cart .coupon .button[name="apply_coupon"], 
+.woocommerce-page button[type="submit"]  {
+	background:#11515E;
+}
+.checkout li.product h2.woocommerce-loop-product__title{
+	font-size: smaller!important;
+}
+.woocommerce-cart .cross-sells h2 {
+	text-align:center;
+	margin-top:-1.2em;
+}
+
+/* Added by LarryJudd */
+.woocommerce-checkout.woocommerce-page.woocommerce-js  div#codeable_custom_checkout_field table tbody tr td div.woocommerce ul.products.columns-3 li{
+	width: 100%;
+}
+#pp-login-1 > div.pp-form-submit-button-wrap > input {
+  top: -5px;
+  padding-top: 1em;
+  max-width: 376px;
+  display: inline-block;
+  position: relative !important;
+  border-radius: 28px !important;
+}
+#slider-11-slide-94-layer-8 {
+  text-shadow: 1px 3px 6px #333;
+}
+/* start Larry codeable Feb 16 */
+@media screen and (min-width: 980px){
+.custom-cart-wrapped {
+	display:flex;
+	width: 100%;
+	flex-direction: row;
+}
+	
+ .woocommerce-cart .custom-cart-wrapped table.shop_table th, .custom-cart-wrapped  .cart_totals td{
+		padding: 10px!important;
+	}
+	.woocommerce-cart .custom-cart-wrapped th{
+	 vertical-align: middle;
+	}
+	.custom-cart-wrapped .woocommerce table.shop_table{
+width: 75%;		
+	}
+	.custom-cart-wrapped .cart-collaterals{
+		width:25%;
+	}
+	.custom-cart-wrapped .woocommerce .cart_totals{
+		float: none;
+	}
+.cart_totals h2{font-size:20px!important;padding-bottom:0!important;display:none;}
+.before-cc-larry {
+	visibility: hidden;
+}
+.cart-collaterals {
+	margin-top: -.2em;
+	float:right;
+	max-width: 25%;
+}
+.woocommerce-cart .coupon {
+  float: left;
+  width: 35%;
+  margin-left: 15px;
+  margin-top: 1px !important;
+}
+.woocommerce .cart .coupon .button[name="apply_coupon"]{
+position: relative;
+  left: 3em;
+  top: -3.48em;
+}
+.woocommerce .cart  .button[name="update_cart"] {
+	position: relative;
+  right: 1em;
+}
+.checkout-button.alt.wc-forward{
+	background: #a6a847;
+	width: 100% !important;
+  text-align: center;
+}
+.woocommerce .cart-collaterals{
+	padding-top: 0;
+	padding-left:1em;
+	margin-top: 0;
+}
+}
+.checkout_steps .active_step{
+	/*background:#a6a847;*/
+}
+
+.checkout_step{
+color:#646464;
+}
+.checkout_step:last-child{
+	border-right-color: transparent;
+}
+@media all and (max-width: 767px) {
+  #logo_img .mobile_logo {
+    margin-left: 1em;
+  }
+.menu_slide.mt_menu.sticky_header {
+    padding: 0 5px 0 1px;
+	margin-left: 2px;
+  }
+	
+}
+@media all and (max-width: 412px) {
+	.mt_menu.header_current_cart{
+		position: relative;
+		top: -3em
+	}
+	  #logo_img .mobile_logo {
+    margin-left: 0;
+  } 
+	#logo_img a img.mobile_logo {
+		transform: scale(.75);
+        position: relative;
+        left: 0;
+	}
+	.home .rs-layer-wrap {
+		left:71px;
+	}
+	.post-type-archive-product  .products.columns-3 {
+		margin-left: -2em;
+	}
+}
+/* end Larry codeable */
