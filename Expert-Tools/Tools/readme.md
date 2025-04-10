@@ -10,8 +10,10 @@ You can also bold/strong tag the titles but I found the offset works just fine.
 
 ## FAQ
 
-Q.: How many dashes are used in the name of site offset title
+Q.: How many dashes are used in the name of site offset title?
+
 A.: 50 - arbitrary
 
-Q;: When to use `pre` element
+Q;: When to use `pre` element?
+
 A.: pre tag is set as default, within each chapter. You can freely add them when you need but remember each pre---inside the default pre---may may increase margins.
